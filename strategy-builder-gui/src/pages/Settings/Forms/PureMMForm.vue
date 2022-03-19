@@ -242,7 +242,7 @@
         class="col-2"
       />
     </Field>
-    <Field class="q-gutter-y-md" :orders-field="true" :type="ordersType">
+    <Field class="q-gutter-y-md" :type="ordersType">
       <Order
         v-for="(order, index) in orders"
         :key="index"
