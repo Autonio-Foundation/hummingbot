@@ -24,16 +24,16 @@
     </q-btn>
   </div>
   <div v-if="formType === FormType.Basic" class="q-gutter-md">
-    <Field title="Exchange" :type="FieldType.Select">
+    <Field title="Exchange" :type="exchange.type">
       <Select v-model="exchange.value.value" v-bind="{ ...exchange.properties }" />
     </Field>
-    <Field title="Market" :type="FieldType.Select">
+    <Field title="Market" :type="market.type">
       <Select v-model="market.value.value" v-bind="{ ...market.properties }" />
     </Field>
     <Field
       title="Bid spread"
       hint="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      :type="FieldType.Input"
+      :type="bidSpread.type"
     >
       <Input
         v-model="bidSpread.value.value"
@@ -45,7 +45,7 @@
     <Field
       title="Ask spread"
       hint="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      :type="FieldType.Input"
+      :type="askSpread.type"
     >
       <Input
         v-model="askSpread.value.value"
@@ -57,7 +57,7 @@
     <Field
       title="Order refresh time"
       hint="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      :type="FieldType.Input"
+      :type="orderRefreshTime.type"
     >
       <Input
         v-model="orderRefreshTime.value.value"
@@ -69,7 +69,7 @@
     <Field
       title="Order amount"
       hint="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      :type="FieldType.Input"
+      :type="orderAmount.type"
     >
       <Input
         v-model="orderAmount.value.value"
@@ -80,13 +80,13 @@
     <Field
       title="Ping pong"
       hint="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      :type="FieldType.Toggle"
+      :type="pingPong.type"
     >
       <q-toggle v-model="pingPong.value.value" color="main-green-1" />
     </Field>
   </div>
   <div v-if="formType === FormType.Advanced" class="q-gutter-md">
-    <Field title="Order levels" :type="FieldType.Input">
+    <Field title="Order levels" :type="orderLevels.type">
       <Input
         v-model="orderLevels.value.value"
         :type="InputType.Number"
@@ -94,7 +94,7 @@
         class="col-2"
       />
     </Field>
-    <Field title="Order level amount" :type="FieldType.Input">
+    <Field title="Order level amount" :type="orderLevelAmount.type">
       <Input
         v-model="orderLevelAmount.value.value"
         :type="InputType.Number"
@@ -102,7 +102,7 @@
         class="col-2"
       />
     </Field>
-    <Field title="Order level spread" :type="FieldType.Input">
+    <Field title="Order level spread" :type="orderLevelSpread.type">
       <Input
         v-model="orderLevelSpread.value.value"
         :type="InputType.Number"
@@ -110,10 +110,10 @@
         class="col-2"
       />
     </Field>
-    <Field title="Inventory skew" :type="FieldType.Toggle">
+    <Field title="Inventory skew" :type="inventorySkew.type">
       <q-toggle v-model="inventorySkew.value.value" color="main-green-1" />
     </Field>
-    <Field title="Inventory target base" :type="FieldType.Input">
+    <Field title="Inventory target base" :type="inventoryTargetBase.type">
       <Input
         v-model="inventoryTargetBase.value.value"
         :type="InputType.Number"
@@ -121,7 +121,7 @@
         class="col-2"
       />
     </Field>
-    <Field title="Inventory range multiplier" :type="FieldType.Input">
+    <Field title="Inventory range multiplier" :type="inventoryRangeMultiplier.type">
       <Input
         v-model="inventoryRangeMultiplier.value.value"
         :type="InputType.Number"
@@ -129,14 +129,14 @@
         class="col-2"
       />
     </Field>
-    <Field title="Inventory price" :type="FieldType.Input">
+    <Field title="Inventory price" :type="inventoryPrice.type">
       <Input
         v-model="inventoryPrice.value.value"
         :type="InputType.Number"
         v-bind="{ ...inventoryPrice.properties }"
       />
     </Field>
-    <Field title="Filled order delay" :type="FieldType.Input">
+    <Field title="Filled order delay" :type="filledOrderDelay.type">
       <Input
         v-model="filledOrderDelay.value.value"
         :type="InputType.Number"
@@ -144,10 +144,10 @@
         class="col-2"
       />
     </Field>
-    <Field title="Hanging orders" :type="FieldType.Toggle">
+    <Field title="Hanging orders" :type="hangingOrders.type">
       <q-toggle v-model="hangingOrders.value.value" color="main-green-1" />
     </Field>
-    <Field title="Hanging order cancel percentage" :type="FieldType.Input">
+    <Field title="Hanging order cancel percentage" :type="hangingOrdersCancel.type">
       <Input
         v-model="hangingOrdersCancel.value.value"
         :type="InputType.Number"
@@ -155,7 +155,7 @@
         class="col-2"
       />
     </Field>
-    <Field title="Minimum spread" :type="FieldType.Input">
+    <Field title="Minimum spread" :type="minimumSpread.type">
       <Input
         v-model="minimumSpread.value.value"
         :type="InputType.Number"
@@ -163,7 +163,7 @@
         class="col-2"
       />
     </Field>
-    <Field title="Order refresh tollerance" :type="FieldType.Input">
+    <Field title="Order refresh tollerance" :type="orderRefreshTolerance.type">
       <Input
         v-model="orderRefreshTolerance.value.value"
         :type="InputType.Number"
@@ -171,62 +171,62 @@
         class="col-2"
       />
     </Field>
-    <Field title="Price ceiling" :type="FieldType.Input">
+    <Field title="Price ceiling" :type="priceCelling.type">
       <Input
         v-model="priceCelling.value.value"
         :type="InputType.Number"
         v-bind="{ ...priceCelling.properties }"
       />
     </Field>
-    <Field title="Price floor" :type="FieldType.Input">
+    <Field title="Price floor" :type="priceFloor.type">
       <Input
         v-model="priceFloor.value.value"
         :type="InputType.Number"
         v-bind="{ ...priceFloor.properties }"
       />
     </Field>
-    <Field title="Order optimization" :type="FieldType.Toggle">
+    <Field title="Order optimization" :type="orderOptimization.type">
       <q-toggle v-model="orderOptimization.value.value" color="main-green-1" />
     </Field>
-    <Field title="Ask order optimization depth" :type="FieldType.Input">
+    <Field title="Ask order optimization depth" :type="askOrderOptimizationDepth.type">
       <Input
         v-model="askOrderOptimizationDepth.value.value"
         :type="InputType.Number"
         v-bind="{ ...askOrderOptimizationDepth.properties }"
       />
     </Field>
-    <Field title="Bid order optimization depth" :type="FieldType.Input">
+    <Field title="Bid order optimization depth" :type="bidOrderOptimizationDepth.type">
       <Input
         v-model="bidOrderOptimizationDepth.value.value"
         :type="InputType.Number"
         v-bind="{ ...bidOrderOptimizationDepth.properties }"
       />
     </Field>
-    <Field title="Add transaction costs" :type="FieldType.Toggle">
+    <Field title="Add transaction costs" :type="addTransactionCosts.type">
       <q-toggle v-model="addTransactionCosts.value.value" color="main-green-1" />
     </Field>
-    <Field title="Price source" :type="FieldType.Select">
+    <Field title="Price source" :type="priceSource.type">
       <Select v-model="priceSource.value.value" v-bind="{ ...priceSource.properties }" />
     </Field>
-    <Field title="Price type" :type="FieldType.Select">
+    <Field title="Price type" :type="priceType.type">
       <Select v-model="priceType.value.value" v-bind="{ ...priceType.properties }" />
     </Field>
-    <Field title="Price source exchange" :type="FieldType.Select">
+    <Field title="Price source exchange" :type="priceSourceExchange.type">
       <Select
         v-model="priceSourceExchange.value.value"
         v-bind="{ ...priceSourceExchange.properties }"
       />
     </Field>
-    <Field title="Price source market" :type="FieldType.Select">
+    <Field title="Price source market" :type="priceSourceMarket.type">
       <Select
         v-model="priceSourceMarket.value.value"
         v-bind="{ ...priceSourceMarket.properties }"
       />
     </Field>
-    <Field title="Take if crossed" :type="FieldType.Toggle">
+    <Field title="Take if crossed" :type="takeIfCrossed.type">
       <q-toggle v-model="takeIfCrossed.value.value" color="main-green-1" />
     </Field>
-    <Field title="Price source custom API" :type="FieldType.Input">
+    <Field title="Price source custom API" :type="priceSourceCustomApi.type">
       <Input
         v-model="priceSourceCustomApi.value.value"
         :type="InputType.Text"
@@ -234,7 +234,7 @@
         class="col-6"
       />
     </Field>
-    <Field title="Custom API update interval" :type="FieldType.Input">
+    <Field title="Custom API update interval" :type="customApiUpdateInterval.type">
       <Input
         v-model="customApiUpdateInterval.value.value"
         :type="InputType.Number"
@@ -242,7 +242,7 @@
         class="col-2"
       />
     </Field>
-    <Field class="q-gutter-y-md" :orders-field="true" :type="FieldType.Orders">
+    <Field class="q-gutter-y-md" :orders-field="true" :type="ordersType">
       <Order
         v-for="(order, index) in orders"
         :key="index"
@@ -277,7 +277,7 @@
         </template>
       </Order>
     </Field>
-    <Field title="Max. order age" :type="FieldType.Input">
+    <Field title="Max. order age" :type="maxOrderAge.type">
       <Input
         v-model="maxOrderAge.value.value"
         :type="InputType.Number"
@@ -297,7 +297,6 @@ import Order from '../components/Order.vue';
 import Select from '../components/Select/Index.vue';
 import { BtnToggleType, useForm } from '../composables/useForm';
 import { useOrders } from '../composables/useOrders';
-import { FieldType } from '../stores/form.types';
 
 enum FormType {
   Basic,
@@ -328,8 +327,8 @@ export default defineComponent({
       formType,
       FormType,
       BtnToggleType,
+      ordersType: orders.type,
       orders: orders.value,
-      FieldType,
     };
   },
 });
