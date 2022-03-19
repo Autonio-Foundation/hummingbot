@@ -29,7 +29,6 @@ export default defineComponent({
   props: {
     title: { type: String, required: false, default: () => '' },
     hint: { type: String, required: false, default: () => '' },
-    ordersField: { type: Boolean, required: false, default: () => false },
     type: { type: Number as PropType<FieldType>, required: true, default: () => FieldType.Input },
   },
 
