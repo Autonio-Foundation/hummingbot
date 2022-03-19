@@ -9,6 +9,7 @@ export { BtnToggleType } from '../stores/form.types';
 
 export const useOrders = (strategyName: Ref<StrategyName>) => {
   const orders = $form[strategyName.value].orders.value as Ref<Order[]>;
+  const { type } = $form[strategyName.value].orders;
 
   const update = (ordersLevelAmount: number | string) => {
     const parsedValue = parseInt(String(ordersLevelAmount), 10);
@@ -25,5 +26,5 @@ export const useOrders = (strategyName: Ref<StrategyName>) => {
     }
   };
 
-  return { value: orders, update };
+  return { value: orders, update, type };
 };
