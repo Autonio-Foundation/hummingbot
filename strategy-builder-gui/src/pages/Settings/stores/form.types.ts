@@ -19,6 +19,8 @@ export interface Select {
   properties: {
     options: string[];
     labelText: string;
+    title: string;
+    hint: string;
   };
 }
 
@@ -28,11 +30,17 @@ export interface Input {
   properties: {
     placeholder?: string;
     rightText?: string;
+    title: string;
+    hint: string;
   };
 }
 export interface Toggle {
   value: Ref<boolean>;
   type: FieldType;
+  properties: {
+    title: string;
+    hint: string;
+  };
 }
 
 export interface Order {

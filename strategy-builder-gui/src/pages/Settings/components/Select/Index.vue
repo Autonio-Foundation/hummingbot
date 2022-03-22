@@ -25,7 +25,6 @@ export default defineComponent({
     options: { type: Array, require: true, default: () => ['1', '2'] },
     labelText: { type: String, require: true, default: () => 'Select...' },
     name: { type: String, require: true, default: () => '' },
-    onChange: { type: Function, require: true, default: () => undefined },
   },
   emits: ['update:modelValue'],
   setup(props) {
@@ -42,6 +41,7 @@ export default defineComponent({
 .form-select {
   max-width: 170px !important;
   max-height: 36px !important;
+  width: 100%;
 }
 
 .form-select span {

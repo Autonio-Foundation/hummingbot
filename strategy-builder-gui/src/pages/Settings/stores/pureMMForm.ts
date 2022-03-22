@@ -7,6 +7,7 @@ export const defaultOrder = {
   value: BtnToggleType.Sell,
   orderAmount: {
     value: ref(0),
+    type: FieldType.Input,
     properties: {
       placeholder: '0',
       rightText: '',
@@ -14,6 +15,7 @@ export const defaultOrder = {
   },
   orderLevelParam: {
     value: ref(0),
+    type: FieldType.Input,
     properties: {
       placeholder: '0',
       rightText: '',
@@ -63,6 +65,8 @@ export const $pureMMForm: $Form = {
     value: ref(0),
     type: FieldType.Input,
     properties: {
+      title: 'Bid spread',
+      hint: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       placeholder: '0',
       rightText: '',
     },
@@ -70,7 +74,10 @@ export const $pureMMForm: $Form = {
   askSpread: {
     value: ref(0),
     type: FieldType.Input,
+
     properties: {
+      title: 'Ask spread',
+      hint: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       placeholder: '0',
       rightText: '',
     },
@@ -78,7 +85,10 @@ export const $pureMMForm: $Form = {
   orderRefreshTime: {
     value: ref(0),
     type: FieldType.Input,
+
     properties: {
+      title: 'Order refresh time',
+      hint: '',
       placeholder: '0',
       rightText: '',
     },
@@ -86,23 +96,32 @@ export const $pureMMForm: $Form = {
   exchange: {
     value: ref(''),
     type: FieldType.Select,
+
     properties: {
       options: ['1', '2', '3', '4', '5'],
       labelText: 'Select exchange',
+      title: 'Exchange',
+      hint: '',
     },
   },
   market: {
     value: ref(''),
     type: FieldType.Select,
+
     properties: {
       options: ['1', '2', '3', '4', '5'],
       labelText: 'Select market',
+      title: 'Market',
+      hint: '',
     },
   },
   orderAmount: {
     value: ref(0),
     type: FieldType.Input,
+
     properties: {
+      title: 'Order amount',
+      hint: '',
       placeholder: '0.00',
       rightText: 'BTC',
     },
@@ -110,11 +129,18 @@ export const $pureMMForm: $Form = {
   pingPong: {
     value: ref(false),
     type: FieldType.Toggle,
+    properties: {
+      title: 'Ping pong',
+      hint: '',
+    },
   },
   orderLevels: {
     value: ref(0),
     type: FieldType.Input,
+
     properties: {
+      title: 'Order levels',
+      hint: '',
       placeholder: '0',
       rightText: '',
     },
@@ -122,7 +148,10 @@ export const $pureMMForm: $Form = {
   orderLevelAmount: {
     value: ref(0),
     type: FieldType.Input,
+
     properties: {
+      title: 'Order level amount',
+      hint: '',
       placeholder: '0',
       rightText: '',
     },
@@ -130,7 +159,10 @@ export const $pureMMForm: $Form = {
   orderLevelSpread: {
     value: ref(0),
     type: FieldType.Input,
+
     properties: {
+      title: 'Order level spread',
+      hint: '',
       placeholder: '0',
       rightText: '',
     },
@@ -138,11 +170,18 @@ export const $pureMMForm: $Form = {
   inventorySkew: {
     value: ref(false),
     type: FieldType.Toggle,
+    properties: {
+      title: 'Inventory skew',
+      hint: '',
+    },
   },
   inventoryTargetBase: {
     value: ref(0),
     type: FieldType.Input,
+
     properties: {
+      title: 'Inventory target base',
+      hint: '',
       placeholder: '0',
       rightText: '',
     },
@@ -150,7 +189,10 @@ export const $pureMMForm: $Form = {
   inventoryRangeMultiplier: {
     value: ref(0),
     type: FieldType.Input,
+
     properties: {
+      title: 'Inventory range multiplier',
+      hint: '',
       placeholder: '0',
       rightText: '',
     },
@@ -158,7 +200,10 @@ export const $pureMMForm: $Form = {
   inventoryPrice: {
     value: ref(''),
     type: FieldType.Input,
+
     properties: {
+      title: 'Inventory price',
+      hint: '',
       placeholder: 'Input Price',
       rightText: '',
     },
@@ -166,7 +211,10 @@ export const $pureMMForm: $Form = {
   filledOrderDelay: {
     value: ref(0),
     type: FieldType.Input,
+
     properties: {
+      title: 'Filled order delay',
+      hint: '',
       placeholder: '0',
       rightText: '',
     },
@@ -174,11 +222,18 @@ export const $pureMMForm: $Form = {
   hangingOrders: {
     value: ref(false),
     type: FieldType.Toggle,
+    properties: {
+      title: 'Order amount',
+      hint: '',
+    },
   },
   hangingOrdersCancel: {
     value: ref(0),
     type: FieldType.Input,
+
     properties: {
+      title: 'Hanging order cancel percentage',
+      hint: '',
       placeholder: '0',
       rightText: '',
     },
@@ -186,7 +241,10 @@ export const $pureMMForm: $Form = {
   minimumSpread: {
     value: ref(0),
     type: FieldType.Input,
+
     properties: {
+      title: 'Minimum spread',
+      hint: '',
       placeholder: '0',
       rightText: '',
     },
@@ -194,7 +252,10 @@ export const $pureMMForm: $Form = {
   orderRefreshTolerance: {
     value: ref(0),
     type: FieldType.Input,
+
     properties: {
+      title: 'Order refresh tollerance',
+      hint: '',
       placeholder: '0',
       rightText: '',
     },
@@ -202,7 +263,10 @@ export const $pureMMForm: $Form = {
   priceCelling: {
     value: ref(''),
     type: FieldType.Input,
+
     properties: {
+      title: 'Price ceiling',
+      hint: '',
       placeholder: 'Price ceiling',
       rightText: '',
     },
@@ -210,7 +274,10 @@ export const $pureMMForm: $Form = {
   priceFloor: {
     value: ref(''),
     type: FieldType.Input,
+
     properties: {
+      title: 'Price floor',
+      hint: '',
       placeholder: 'Price floor',
       rightText: '',
     },
@@ -218,11 +285,18 @@ export const $pureMMForm: $Form = {
   orderOptimization: {
     value: ref(false),
     type: FieldType.Toggle,
+    properties: {
+      title: 'Order optimization',
+      hint: '',
+    },
   },
   askOrderOptimizationDepth: {
     value: ref(''),
     type: FieldType.Input,
+
     properties: {
+      title: 'Ask order optimization depth',
+      hint: '',
       placeholder: 'Ask order',
       rightText: '',
     },
@@ -230,7 +304,10 @@ export const $pureMMForm: $Form = {
   bidOrderOptimizationDepth: {
     value: ref(''),
     type: FieldType.Input,
+
     properties: {
+      title: 'Bid order optimization depth',
+      hint: '',
       placeholder: 'Bid order',
       rightText: '',
     },
@@ -238,6 +315,10 @@ export const $pureMMForm: $Form = {
   addTransactionCosts: {
     value: ref(false),
     type: FieldType.Toggle,
+    properties: {
+      title: 'Add transaction costs',
+      hint: '',
+    },
   },
   priceSource: {
     value: ref(''),
@@ -245,6 +326,8 @@ export const $pureMMForm: $Form = {
     properties: {
       options: ['1', '2', '3', '4', '5'],
       labelText: 'Choose source',
+      title: 'Price source',
+      hint: '',
     },
   },
   priceType: {
@@ -253,6 +336,8 @@ export const $pureMMForm: $Form = {
     properties: {
       options: ['1', '2', '3', '4', '5'],
       labelText: 'Choose type',
+      title: 'Order refresh time',
+      hint: 'Price type',
     },
   },
   priceSourceExchange: {
@@ -261,6 +346,8 @@ export const $pureMMForm: $Form = {
     properties: {
       options: ['1', '2', '3', '4', '5'],
       labelText: 'Choose exchange',
+      title: 'Price source exchange',
+      hint: '',
     },
   },
   priceSourceMarket: {
@@ -269,16 +356,25 @@ export const $pureMMForm: $Form = {
     properties: {
       options: ['1', '2', '3', '4', '5'],
       labelText: 'Choose pair',
+      title: 'Price source market',
+      hint: '',
     },
   },
   takeIfCrossed: {
     value: ref(false),
     type: FieldType.Toggle,
+    properties: {
+      title: 'Take if crossed',
+      hint: '',
+    },
   },
   priceSourceCustomApi: {
     value: ref(''),
     type: FieldType.Input,
+
     properties: {
+      title: 'Price source custom API',
+      hint: '',
       placeholder: 'Pricing API url',
       rightText: '',
     },
@@ -286,7 +382,10 @@ export const $pureMMForm: $Form = {
   customApiUpdateInterval: {
     value: ref(0),
     type: FieldType.Input,
+
     properties: {
+      title: 'Custom API update interval',
+      hint: '',
       placeholder: '0',
       rightText: '',
     },
@@ -298,7 +397,10 @@ export const $pureMMForm: $Form = {
   maxOrderAge: {
     value: ref(0),
     type: FieldType.Input,
+
     properties: {
+      title: '',
+      hint: '',
       placeholder: '0',
       rightText: '',
     },
@@ -306,7 +408,10 @@ export const $pureMMForm: $Form = {
   fileName: {
     value: ref(StrategyName.PureMarketMaking),
     type: FieldType.Input,
+
     properties: {
+      title: '',
+      hint: '',
       placeholder: 'Title',
       rightText: '.yml',
     },
