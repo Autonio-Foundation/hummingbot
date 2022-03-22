@@ -2,7 +2,7 @@
   <Field :type="FieldType.Orders" class="q-gutter-y-md">
     <Order
       v-for="(order, index) in orders"
-      :key="index + '4ffldss'"
+      :key="index"
       :title="`Order ${index + 1}`"
       hint="Order hint"
     >
