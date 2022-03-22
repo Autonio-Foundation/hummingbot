@@ -12,12 +12,7 @@
     </div>
     <div class="column text-white text-body1">
       File name
-      <Input
-        v-model="fileName.value.value"
-        :type="InputType.Text"
-        v-bind="{ ...fileName.properties }"
-        class="col-12 q-mt-sm"
-      />
+      <FieldInput v-bind="fileName" input-class="col-12 q-mt-sm" />
     </div>
   </div>
 </template>
@@ -26,11 +21,11 @@
 import { StrategyName } from 'src/composables/useStrategies';
 import { defineComponent, PropType, ref } from 'vue';
 
-import Input, { InputType } from '../components/Input.vue';
+import FieldInput from '../components/FieldInput.vue';
 import { useForm } from '../composables/useForm';
 
 export default defineComponent({
-  components: { Input },
+  components: { FieldInput },
   props: {
     strategyName: {
       type: String as PropType<StrategyName>,
@@ -42,7 +37,7 @@ export default defineComponent({
   setup(props) {
     const { fields } = useForm(ref(props.strategyName));
 
-    return { ...fields, InputType };
+    return { ...fields };
   },
 });
 </script>

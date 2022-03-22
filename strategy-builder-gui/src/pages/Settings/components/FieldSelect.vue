@@ -1,0 +1,26 @@
+<template>
+  <Field :title="properties.title" :hint="properties.hint" :type="FieldType.Select">
+    <Select v-model="fieldValue.value" v-bind="{ ...properties }" />
+  </Field>
+</template>
+
+<script lang="ts">
+import { computed, defineComponent, PropType, Ref } from 'vue';
+
+import { FieldType } from '../stores/form.types';
+import Field from './Field.vue';
+import Select from './Select/Index.vue';
+
+export default defineComponent({
+  components: { Field, Select },
+  props: {
+    value: { type: Object as PropType<Ref<string>>, require: false, default: () => ({}) },
+    properties: { type: Object, require: false, default: () => ({}) },
+  },
+
+  setup(props) {
+    const fieldValue = computed(() => props.value);
+    return { FieldType, fieldValue };
+  },
+});
+</script>
