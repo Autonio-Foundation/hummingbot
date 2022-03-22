@@ -4,7 +4,7 @@
       v-for="(order, index) in orders"
       :key="index"
       :title="`Order ${index + 1}`"
-      hint="Order hint"
+      :hint="order.hint"
     >
       <template #toggle>
         <q-btn-toggle
@@ -38,7 +38,7 @@
 
 <script lang="ts">
 import { StrategyName } from 'src/stores/strategies';
-import { defineComponent, PropType, Ref, ref, watch } from 'vue';
+import { defineComponent, PropType, ref, watch } from 'vue';
 
 import { useForm } from '../composables/useForm';
 import { useOrders } from '../composables/useOrders';
