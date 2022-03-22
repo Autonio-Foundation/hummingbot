@@ -47,6 +47,7 @@ export interface Order {
   value: Ref<BtnToggleType>;
   orderAmount: Input;
   orderLevelParam: Input;
+  hint: string;
 }
 
 export interface Orders {

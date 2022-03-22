@@ -5,6 +5,7 @@ import { $Form, BtnToggleType, FieldType, FileMap } from './form.types';
 
 export const defaultOrder = {
   value: BtnToggleType.Sell,
+  hint: 'Order hint',
   orderAmount: {
     value: ref(0),
     type: FieldType.Input,
