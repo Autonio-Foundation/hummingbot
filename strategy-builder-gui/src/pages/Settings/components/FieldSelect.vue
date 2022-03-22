@@ -1,6 +1,10 @@
 <template>
   <Field :title="properties.title" :hint="properties.hint" :type="FieldType.Select">
-    <Select v-model="fieldValue.value" v-bind="{ ...properties }" />
+    <Select
+      v-model="fieldValue.value"
+      :options="properties.options"
+      :label-text="properties.labelText"
+    />
   </Field>
 </template>
 
