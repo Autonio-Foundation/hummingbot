@@ -22,7 +22,7 @@ export default defineComponent({
   props: {
     type: { type: Number as PropType<InputType>, require: false, default: () => InputType.Number },
 
-    inputClass: { type: String, require: false, default: () => 'col-2' },
+    inputClass: { type: String, require: false, default: () => 'col-3' },
 
     value: { type: Object as PropType<Ref<string>>, require: false, default: () => ({}) },
     properties: { type: Object, require: false, default: () => ({}) },
