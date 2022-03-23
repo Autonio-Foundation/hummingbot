@@ -7,7 +7,9 @@ export const useStrategiesByCategory = (category: Ref<StrategyCategory>) => {
   const values = computed(() =>
     $strategies.value
       .sort((a, b) => a.place - b.place)
-      .filter((val) => category.value === StrategyCategory.All || category.value === val.category),
+      .filter(
+        (val) => category.value === StrategyCategory.All || val.category.includes(category.value),
+      ),
   );
 
   return { values };
