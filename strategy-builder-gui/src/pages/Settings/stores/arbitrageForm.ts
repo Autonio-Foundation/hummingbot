@@ -2,6 +2,17 @@ import { ref } from 'vue';
 
 import { $Form, FieldType } from './form.types';
 
+export const arbitrageFieldsFileMap = {
+  primaryMarket: 'primary_market',
+  secondaryMarket: 'secondary_market',
+  primaryMarketTradingPair: 'primary_market_trading_pair',
+  secondaryMarketTradingPair: 'secondary_market_trading_pair',
+  minProfitability: 'min_profitability',
+  useOracleConversionRate: 'use_oracle_conversion_rate',
+  secondaryToPrimaryBaseConversionRate: 'secondary_to_primary_base_conversion_rate',
+  secondaryToPrimaryQuoteConversionRate: 'secondary_to_primary_quote_conversion_rate',
+};
+
 export const $arbitrageForm: $Form = {
   primaryMarket: {
     value: ref(''),
