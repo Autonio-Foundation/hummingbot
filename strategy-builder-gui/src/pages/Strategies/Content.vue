@@ -41,7 +41,7 @@
         />
       </div>
     </div>
-    <div class="row q-col-gutter-lg fit full-width">
+    <div class="row q-col-gutter-lg fit full-width q-gutter-md">
       <div
         v-for="strategy in strategies"
         :key="strategy.place"
