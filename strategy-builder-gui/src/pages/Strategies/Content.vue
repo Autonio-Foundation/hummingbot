@@ -41,7 +41,7 @@
         />
       </div>
     </div>
-    <div class="row q-gutter-x-lg">
+    <div class="row q-gutter-lg">
       <div
         v-for="strategy in strategies"
         :key="strategy.place"

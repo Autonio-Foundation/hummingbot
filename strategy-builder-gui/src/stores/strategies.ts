@@ -21,7 +21,7 @@ interface Strategy {
   placeType: 'equal' | 'lt' | 'gt';
   fileHref: string;
   strategyName: StrategyName;
-  category: StrategyCategory;
+  category: StrategyCategory[];
 }
 
 const strategies: Strategy[] = [
@@ -33,7 +33,7 @@ const strategies: Strategy[] = [
     strategyName: StrategyName.PureMarketMaking,
     place: 1,
     placeType: 'equal',
-    category: StrategyCategory.Binance,
+    category: [StrategyCategory.Binance, StrategyCategory.CryptoCom],
   },
   {
     title: 'Arbitrage',
@@ -43,7 +43,7 @@ const strategies: Strategy[] = [
     strategyName: StrategyName.Arbitrage,
     place: 1,
     placeType: 'equal',
-    category: StrategyCategory.Binance,
+    category: [StrategyCategory.Binance],
   },
 ];
 
