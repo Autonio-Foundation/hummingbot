@@ -1,7 +1,7 @@
 import { StrategyName } from 'src/stores/strategies';
 import { ref } from 'vue';
 
-import { $Form, FieldType } from './form.types';
+import { $Form } from './form.types';
 
 export const arbitrageFieldsFileMap = {
   primaryMarket: 'primary_market',
@@ -17,7 +17,6 @@ export const arbitrageFieldsFileMap = {
 export const $arbitrageForm: $Form = {
   primaryMarket: {
     value: ref(''),
-    type: FieldType.Select,
 
     properties: {
       options: ['1', '2', '3', '4', '5'],
@@ -28,7 +27,6 @@ export const $arbitrageForm: $Form = {
   },
   secondaryMarket: {
     value: ref(''),
-    type: FieldType.Select,
 
     properties: {
       options: ['1', '2', '3', '4', '5'],
@@ -39,7 +37,6 @@ export const $arbitrageForm: $Form = {
   },
   primaryMarketTradingPair: {
     value: ref(''),
-    type: FieldType.Select,
 
     properties: {
       options: ['1', '2', '3', '4', '5'],
@@ -50,7 +47,6 @@ export const $arbitrageForm: $Form = {
   },
   secondaryMarketTradingPair: {
     value: ref(''),
-    type: FieldType.Select,
 
     properties: {
       options: ['1', '2', '3', '4', '5'],
@@ -61,7 +57,6 @@ export const $arbitrageForm: $Form = {
   },
   minProfitability: {
     value: ref(0),
-    type: FieldType.Input,
 
     properties: {
       title: 'Min profitability',
@@ -72,7 +67,7 @@ export const $arbitrageForm: $Form = {
   },
   useOracleConversionRate: {
     value: ref(false),
-    type: FieldType.Toggle,
+
     properties: {
       title: 'Ping pong',
       hint: '',
@@ -80,7 +75,6 @@ export const $arbitrageForm: $Form = {
   },
   secondaryToPrimaryBaseConversionRate: {
     value: ref(0),
-    type: FieldType.Input,
 
     properties: {
       title: 'Secondary to primary base conversion rate',
@@ -91,7 +85,6 @@ export const $arbitrageForm: $Form = {
   },
   secondaryToPrimaryQuoteConversionRate: {
     value: ref(0),
-    type: FieldType.Input,
 
     properties: {
       title: 'Secondary to primary quote conversion rate',
@@ -102,7 +95,6 @@ export const $arbitrageForm: $Form = {
   },
   fileName: {
     value: ref(StrategyName.Arbitrage),
-    type: FieldType.Input,
 
     properties: {
       title: '',
