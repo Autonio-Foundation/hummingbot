@@ -1,3 +1,4 @@
+import { StrategyName } from 'src/stores/strategies';
 import { ref } from 'vue';
 
 import { $Form, FieldType } from './form.types';
@@ -32,7 +33,7 @@ export const $arbitrageForm: $Form = {
     properties: {
       options: ['1', '2', '3', '4', '5'],
       labelText: 'Select market',
-      title: 'Primary Market',
+      title: 'Secondary Market',
       hint: '',
     },
   },
@@ -97,6 +98,17 @@ export const $arbitrageForm: $Form = {
       hint: '',
       placeholder: '0',
       rightText: '',
+    },
+  },
+  fileName: {
+    value: ref(StrategyName.Arbitrage),
+    type: FieldType.Input,
+
+    properties: {
+      title: '',
+      hint: '',
+      placeholder: 'Title',
+      rightText: '.yml',
     },
   },
 };

@@ -2,6 +2,7 @@ import { ref } from 'vue';
 
 export enum StrategyName {
   PureMarketMaking = 'pure-market-making',
+  Arbitrage = 'arbitrage',
 }
 
 export enum StrategyCategory {
