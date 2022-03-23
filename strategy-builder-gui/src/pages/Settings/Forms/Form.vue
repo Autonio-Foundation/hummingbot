@@ -20,25 +20,29 @@ import Pager from '../components/Pager/Index.vue';
 import { useFileHref } from '../composables/useFileHref';
 import { useForm } from '../composables/useForm';
 import { useSteps } from '../composables/useSteps';
+import ArbitrageForm from './ArbitrageForm.vue';
 import PureMMForm from './PureMMForm.vue';
 import SaveForm from './SaveForm.vue';
 
 const componentsMap = {
   [StrategyName.PureMarketMaking]: PureMMForm.name,
+  [StrategyName.Arbitrage]: ArbitrageForm.name,
 };
 
 const titleDisplayMap = {
   [StrategyName.PureMarketMaking]: 'Pure Market Making',
+  [StrategyName.Arbitrage]: 'Arbitrage',
 };
 
 export default defineComponent({
-  components: { PureMMForm, SaveForm, Pager },
+  components: { PureMMForm, SaveForm, Pager, ArbitrageForm },
 
   setup() {
     const steps = useSteps();
     const route = useRoute();
     const strategyName = computed(() => route.params.strategyName as StrategyName);
     const { values, init } = useForm(strategyName);
+
     init();
 
     const fileHref = useFileHref(strategyName);
