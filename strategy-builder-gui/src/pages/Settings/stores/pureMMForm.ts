@@ -1,14 +1,14 @@
 import { StrategyName } from 'src/stores/strategies';
 import { ref } from 'vue';
 
-import { $Form, BtnToggleType, FieldType, FileMap } from './form.types';
+import { $Form, BtnToggleType, FileMap } from './form.types';
 
 export const defaultOrder = {
   value: BtnToggleType.Sell,
   hint: 'Order hint',
   orderAmount: {
     value: ref(0),
-    type: FieldType.Input,
+
     properties: {
       placeholder: '0',
       rightText: '',
@@ -16,7 +16,7 @@ export const defaultOrder = {
   },
   orderLevelParam: {
     value: ref(0),
-    type: FieldType.Input,
+
     properties: {
       placeholder: '0',
       rightText: '',
@@ -64,7 +64,7 @@ export const pureMMFormFileFieldsMap: FileMap = {
 export const $pureMMForm: $Form = {
   bidSpread: {
     value: ref(0),
-    type: FieldType.Input,
+
     properties: {
       title: 'Bid spread',
       hint: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -74,7 +74,6 @@ export const $pureMMForm: $Form = {
   },
   askSpread: {
     value: ref(0),
-    type: FieldType.Input,
 
     properties: {
       title: 'Ask spread',
@@ -85,7 +84,6 @@ export const $pureMMForm: $Form = {
   },
   orderRefreshTime: {
     value: ref(0),
-    type: FieldType.Input,
 
     properties: {
       title: 'Order refresh time',
@@ -96,7 +94,6 @@ export const $pureMMForm: $Form = {
   },
   exchange: {
     value: ref(''),
-    type: FieldType.Select,
 
     properties: {
       options: ['1', '2', '3', '4', '5'],
@@ -107,7 +104,6 @@ export const $pureMMForm: $Form = {
   },
   market: {
     value: ref(''),
-    type: FieldType.Select,
 
     properties: {
       options: ['1', '2', '3', '4', '5'],
@@ -118,7 +114,6 @@ export const $pureMMForm: $Form = {
   },
   orderAmount: {
     value: ref(0),
-    type: FieldType.Input,
 
     properties: {
       title: 'Order amount',
@@ -129,7 +124,7 @@ export const $pureMMForm: $Form = {
   },
   pingPong: {
     value: ref(false),
-    type: FieldType.Toggle,
+
     properties: {
       title: 'Ping pong',
       hint: '',
@@ -137,7 +132,6 @@ export const $pureMMForm: $Form = {
   },
   orderLevels: {
     value: ref(0),
-    type: FieldType.Input,
 
     properties: {
       title: 'Order levels',
@@ -148,7 +142,6 @@ export const $pureMMForm: $Form = {
   },
   orderLevelAmount: {
     value: ref(0),
-    type: FieldType.Input,
 
     properties: {
       title: 'Order level amount',
@@ -159,7 +152,6 @@ export const $pureMMForm: $Form = {
   },
   orderLevelSpread: {
     value: ref(0),
-    type: FieldType.Input,
 
     properties: {
       title: 'Order level spread',
@@ -170,7 +162,7 @@ export const $pureMMForm: $Form = {
   },
   inventorySkew: {
     value: ref(false),
-    type: FieldType.Toggle,
+
     properties: {
       title: 'Inventory skew',
       hint: '',
@@ -178,7 +170,6 @@ export const $pureMMForm: $Form = {
   },
   inventoryTargetBase: {
     value: ref(0),
-    type: FieldType.Input,
 
     properties: {
       title: 'Inventory target base',
@@ -189,7 +180,6 @@ export const $pureMMForm: $Form = {
   },
   inventoryRangeMultiplier: {
     value: ref(0),
-    type: FieldType.Input,
 
     properties: {
       title: 'Inventory range multiplier',
@@ -200,7 +190,6 @@ export const $pureMMForm: $Form = {
   },
   inventoryPrice: {
     value: ref(''),
-    type: FieldType.Input,
 
     properties: {
       title: 'Inventory price',
@@ -211,7 +200,6 @@ export const $pureMMForm: $Form = {
   },
   filledOrderDelay: {
     value: ref(0),
-    type: FieldType.Input,
 
     properties: {
       title: 'Filled order delay',
@@ -222,7 +210,7 @@ export const $pureMMForm: $Form = {
   },
   hangingOrders: {
     value: ref(false),
-    type: FieldType.Toggle,
+
     properties: {
       title: 'Order amount',
       hint: '',
@@ -230,7 +218,6 @@ export const $pureMMForm: $Form = {
   },
   hangingOrdersCancel: {
     value: ref(0),
-    type: FieldType.Input,
 
     properties: {
       title: 'Hanging order cancel percentage',
@@ -241,7 +228,6 @@ export const $pureMMForm: $Form = {
   },
   minimumSpread: {
     value: ref(0),
-    type: FieldType.Input,
 
     properties: {
       title: 'Minimum spread',
@@ -252,7 +238,6 @@ export const $pureMMForm: $Form = {
   },
   orderRefreshTolerance: {
     value: ref(0),
-    type: FieldType.Input,
 
     properties: {
       title: 'Order refresh tollerance',
@@ -263,7 +248,6 @@ export const $pureMMForm: $Form = {
   },
   priceCelling: {
     value: ref(''),
-    type: FieldType.Input,
 
     properties: {
       title: 'Price ceiling',
@@ -274,7 +258,6 @@ export const $pureMMForm: $Form = {
   },
   priceFloor: {
     value: ref(''),
-    type: FieldType.Input,
 
     properties: {
       title: 'Price floor',
@@ -285,7 +268,7 @@ export const $pureMMForm: $Form = {
   },
   orderOptimization: {
     value: ref(false),
-    type: FieldType.Toggle,
+
     properties: {
       title: 'Order optimization',
       hint: '',
@@ -293,7 +276,6 @@ export const $pureMMForm: $Form = {
   },
   askOrderOptimizationDepth: {
     value: ref(''),
-    type: FieldType.Input,
 
     properties: {
       title: 'Ask order optimization depth',
@@ -304,7 +286,6 @@ export const $pureMMForm: $Form = {
   },
   bidOrderOptimizationDepth: {
     value: ref(''),
-    type: FieldType.Input,
 
     properties: {
       title: 'Bid order optimization depth',
@@ -315,7 +296,7 @@ export const $pureMMForm: $Form = {
   },
   addTransactionCosts: {
     value: ref(false),
-    type: FieldType.Toggle,
+
     properties: {
       title: 'Add transaction costs',
       hint: '',
@@ -323,7 +304,7 @@ export const $pureMMForm: $Form = {
   },
   priceSource: {
     value: ref(''),
-    type: FieldType.Select,
+
     properties: {
       options: ['1', '2', '3', '4', '5'],
       labelText: 'Choose source',
@@ -333,7 +314,7 @@ export const $pureMMForm: $Form = {
   },
   priceType: {
     value: ref(''),
-    type: FieldType.Select,
+
     properties: {
       options: ['1', '2', '3', '4', '5'],
       labelText: 'Choose type',
@@ -343,7 +324,7 @@ export const $pureMMForm: $Form = {
   },
   priceSourceExchange: {
     value: ref(''),
-    type: FieldType.Select,
+
     properties: {
       options: ['1', '2', '3', '4', '5'],
       labelText: 'Choose exchange',
@@ -353,7 +334,7 @@ export const $pureMMForm: $Form = {
   },
   priceSourceMarket: {
     value: ref(''),
-    type: FieldType.Select,
+
     properties: {
       options: ['1', '2', '3', '4', '5'],
       labelText: 'Choose pair',
@@ -363,7 +344,7 @@ export const $pureMMForm: $Form = {
   },
   takeIfCrossed: {
     value: ref(false),
-    type: FieldType.Toggle,
+
     properties: {
       title: 'Take if crossed',
       hint: '',
@@ -371,7 +352,6 @@ export const $pureMMForm: $Form = {
   },
   priceSourceCustomApi: {
     value: ref(''),
-    type: FieldType.Input,
 
     properties: {
       title: 'Price source custom API',
@@ -382,7 +362,6 @@ export const $pureMMForm: $Form = {
   },
   customApiUpdateInterval: {
     value: ref(0),
-    type: FieldType.Input,
 
     properties: {
       title: 'Custom API update interval',
@@ -393,11 +372,9 @@ export const $pureMMForm: $Form = {
   },
   orders: {
     value: ref([]),
-    type: FieldType.Orders,
   },
   maxOrderAge: {
     value: ref(0),
-    type: FieldType.Input,
 
     properties: {
       title: '',
@@ -408,7 +385,6 @@ export const $pureMMForm: $Form = {
   },
   fileName: {
     value: ref(StrategyName.PureMarketMaking),
-    type: FieldType.Input,
 
     properties: {
       title: '',

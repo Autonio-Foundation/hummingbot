@@ -15,7 +15,6 @@ export enum BtnToggleType {
 
 export interface Select {
   value: Ref<string>;
-  type: FieldType.Select;
   properties: {
     options: string[];
     labelText: string;
@@ -26,7 +25,6 @@ export interface Select {
 
 export interface Input {
   value: Ref<string> | Ref<number>;
-  type: FieldType.Input;
   properties: {
     placeholder?: string;
     rightText?: string;
@@ -36,7 +34,6 @@ export interface Input {
 }
 export interface Toggle {
   value: Ref<boolean>;
-  type: FieldType.Toggle;
   properties: {
     title: string;
     hint: string;
@@ -52,7 +49,6 @@ export interface Order {
 
 export interface Orders {
   value: Ref<Order[]>;
-  type: FieldType.Orders;
 }
 
 export interface $Form {
