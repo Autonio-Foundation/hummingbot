@@ -86,8 +86,6 @@ export default defineComponent({
 <style lang="scss">
 @use 'sass:map';
 
-.strategy {
-}
 .strategies-select {
   max-width: 150px;
 }
