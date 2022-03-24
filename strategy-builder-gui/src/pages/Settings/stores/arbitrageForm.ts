@@ -17,9 +17,10 @@ export const arbitrageFieldsFileMap = {
 export const $arbitrageForm: $Form = {
   primaryMarket: {
     value: ref(''),
+    isMarket: true,
 
     properties: {
-      options: ['1', '2', '3', '4', '5'],
+      options: [],
       labelText: 'Select market',
       title: 'Primary Market',
       hint: '',
@@ -27,9 +28,10 @@ export const $arbitrageForm: $Form = {
   },
   secondaryMarket: {
     value: ref(''),
+    isMarket: true,
 
     properties: {
-      options: ['1', '2', '3', '4', '5'],
+      options: [],
       labelText: 'Select market',
       title: 'Secondary Market',
       hint: '',

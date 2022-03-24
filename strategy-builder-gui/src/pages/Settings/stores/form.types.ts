@@ -15,6 +15,7 @@ export enum BtnToggleType {
 
 export interface Select {
   value: Ref<string>;
+  isMarket?: boolean;
   properties: {
     options: string[];
     labelText: string;

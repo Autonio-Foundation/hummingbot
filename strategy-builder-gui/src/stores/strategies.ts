@@ -5,7 +5,7 @@ export enum StrategyName {
   Arbitrage = 'arbitrage',
 }
 
-export enum StrategyCategory {
+export enum StrategyMarket {
   All = 'All exchanges',
   Binance = 'Binance',
   AscendEX = 'AscendEX',
@@ -21,7 +21,7 @@ interface Strategy {
   placeType: 'equal' | 'lt' | 'gt';
   fileHref: string;
   strategyName: StrategyName;
-  category: StrategyCategory[];
+  markets: StrategyMarket[];
 }
 
 const strategies: Strategy[] = [
@@ -33,7 +33,7 @@ const strategies: Strategy[] = [
     strategyName: StrategyName.PureMarketMaking,
     place: 1,
     placeType: 'equal',
-    category: [StrategyCategory.Binance, StrategyCategory.CryptoCom],
+    markets: [StrategyMarket.Binance, StrategyMarket.CryptoCom],
   },
   {
     title: 'Arbitrage',
@@ -43,7 +43,7 @@ const strategies: Strategy[] = [
     strategyName: StrategyName.Arbitrage,
     place: 1,
     placeType: 'equal',
-    category: [StrategyCategory.Binance],
+    markets: [StrategyMarket.Binance],
   },
 ];
 
