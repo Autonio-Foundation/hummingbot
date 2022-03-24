@@ -41,7 +41,7 @@ const strategies: Strategy[] = [
       'This strategy allows Hummingbot users to run a market making strategy on a single trading pair on a spot exchanges.',
     fileHref: '/',
     strategyName: StrategyName.Arbitrage,
-    place: 1,
+    place: 2,
     placeType: 'equal',
     markets: [StrategyMarket.Binance],
   },

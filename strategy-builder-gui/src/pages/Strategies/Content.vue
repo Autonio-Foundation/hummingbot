@@ -41,12 +41,8 @@
         />
       </div>
     </div>
-    <div class="row q-gutter-lg">
-      <div
-        v-for="strategy in strategies"
-        :key="strategy.place"
-        class="col-12 col-md-6 col-lg-3 q-px-none"
-      >
+    <div class="row q-col-gutter-lg">
+      <div v-for="strategy in strategies" :key="strategy.place" class="col-12 col-md-6 col-lg-3">
         <StrategyBox
           :place="strategy.place"
           :place-type="strategy.placeType"
@@ -89,6 +85,9 @@ export default defineComponent({
 
 <style lang="scss">
 @use 'sass:map';
+
+.strategy {
+}
 .strategies-select {
   max-width: 150px;
 }
