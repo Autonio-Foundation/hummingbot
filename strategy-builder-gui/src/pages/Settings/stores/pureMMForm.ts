@@ -104,9 +104,10 @@ export const $pureMMForm: $Form = {
   },
   market: {
     value: ref(''),
+    isMarket: true,
 
     properties: {
-      options: ['1', '2', '3', '4', '5'],
+      options: [],
       labelText: 'Select market',
       title: 'Market',
       hint: '',
