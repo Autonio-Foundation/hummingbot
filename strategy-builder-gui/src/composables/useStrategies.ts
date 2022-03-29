@@ -1,9 +1,9 @@
-import { StrategyMarket } from '../stores/strategies';
+import { StrategyCategory } from '../stores/strategies';
 
 export { StrategyName } from 'src/stores/strategies';
 
 export const useStrategies = () => {
-  const markets: string[] = Object.values(StrategyMarket);
+  const categories = Object.values(StrategyCategory);
 
-  return { markets };
+  return { categories };
 };

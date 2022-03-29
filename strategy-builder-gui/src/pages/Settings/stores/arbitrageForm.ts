@@ -1,3 +1,4 @@
+import { useExchangesByStrategyName } from 'src/composables/useExchangesByStrategyName';
 import { StrategyName } from 'src/stores/strategies';
 import { ref } from 'vue';
 
@@ -14,13 +15,15 @@ export const arbitrageFieldsFileMap = {
   secondaryToPrimaryQuoteConversionRate: 'secondary_to_primary_quote_conversion_rate',
 };
 
+const exchangeOptions = useExchangesByStrategyName(ref(StrategyName.Arbitrage));
+
 export const $arbitrageForm: $Form = {
   primaryMarket: {
     value: ref(''),
     isMarket: true,
 
     properties: {
-      options: [],
+      options: exchangeOptions,
       labelText: 'Select market',
       title: 'Primary Market',
       hint: '',
@@ -31,7 +34,7 @@ export const $arbitrageForm: $Form = {
     isMarket: true,
 
     properties: {
-      options: [],
+      options: exchangeOptions,
       labelText: 'Select market',
       title: 'Secondary Market',
       hint: '',
