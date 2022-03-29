@@ -31,7 +31,7 @@
           v-model="category"
           borderless
           input-class="flex items-center justify-center"
-          :options="markets"
+          :options="categories"
           rounded
           :dropdown-icon="`img:${require('./arrow-bottom.svg')}`"
           :display-value="category"
@@ -60,7 +60,7 @@
 import { defineComponent, ref } from 'vue';
 
 import { useStrategies } from '../../composables/useStrategies';
-import { StrategyMarket } from '../../stores/strategies';
+import { StrategyCategory } from '../../stores/strategies';
 import FeatureBox, { FeatureBoxType } from './components/FeatureBox/Index.vue';
 import StrategyBox from './components/StrategyBox/Index.vue';
 import { useStrategiesByCategory } from './composables/useStrategiesByCategory';
@@ -69,15 +69,15 @@ export default defineComponent({
   components: { FeatureBox, StrategyBox },
 
   setup() {
-    const category = ref(StrategyMarket.All);
-    const { markets } = useStrategies();
+    const category = ref(StrategyCategory.All);
+    const strategies = useStrategies();
     const strategiesByCategory = useStrategiesByCategory(category);
 
     return {
       FeatureBoxType,
       strategies: strategiesByCategory.values,
       category,
-      markets,
+      categories: strategies.categories,
     };
   },
 });

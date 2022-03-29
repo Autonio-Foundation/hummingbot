@@ -1,18 +1,19 @@
 import { ref } from 'vue';
 
+import { Exchange } from './exchanges';
+
 export enum StrategyName {
   PureMarketMaking = 'pure-market-making',
   Arbitrage = 'arbitrage',
 }
 
-export enum StrategyMarket {
-  All = 'All exchanges',
-  Binance = 'Binance',
-  AscendEX = 'AscendEX',
-  CryptoCom = 'Crypto.com',
-  Kucoin = 'Kucoin',
-  BinanceUS = 'BinanceUS',
+enum StrategyCategoryDefault {
+  All = 'All Exchanges',
 }
+
+export const StrategyCategory = { ...StrategyCategoryDefault, ...Exchange };
+
+export type StrategyCategory = StrategyCategoryDefault | Exchange;
 
 interface Strategy {
   title: string;
@@ -21,7 +22,7 @@ interface Strategy {
   placeType: 'equal' | 'lt' | 'gt';
   fileHref: string;
   strategyName: StrategyName;
-  markets: StrategyMarket[];
+  categories: string[];
 }
 
 const strategies: Strategy[] = [
@@ -33,7 +34,7 @@ const strategies: Strategy[] = [
     strategyName: StrategyName.PureMarketMaking,
     place: 1,
     placeType: 'equal',
-    markets: [StrategyMarket.Binance, StrategyMarket.CryptoCom],
+    categories: [StrategyCategory.Binance, StrategyCategory.CryptoCom],
   },
   {
     title: 'Arbitrage',
@@ -43,7 +44,7 @@ const strategies: Strategy[] = [
     strategyName: StrategyName.Arbitrage,
     place: 2,
     placeType: 'equal',
-    markets: [StrategyMarket.Binance],
+    categories: [StrategyCategory.Binance],
   },
 ];
 
