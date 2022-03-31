@@ -1,4 +1,4 @@
-import { useExchangesByStrategyName } from 'src/composables/useExchangesByStrategyName';
+import { Exchange } from 'src/stores/exchanges';
 import { StrategyName } from 'src/stores/strategies';
 import { ref } from 'vue';
 
@@ -62,7 +62,7 @@ export const pureMMFormFileFieldsMap: FileMap = {
   orders: 'orders',
 };
 
-const exchangeOptions = useExchangesByStrategyName(ref(StrategyName.PureMarketMaking));
+const exchangeOptions = Object.values(Exchange);
 
 export const $pureMMForm: $Form = {
   bidSpread: {

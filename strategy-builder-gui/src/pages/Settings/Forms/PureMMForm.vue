@@ -71,6 +71,7 @@ import FieldOrders from '../components/FieldOrders.vue';
 import FieldSelect from '../components/FieldSelect.vue';
 import FieldToggle from '../components/FieldToggle.vue';
 import { BtnToggleType, useForm } from '../composables/useForm';
+import { usePureMMForm } from '../composables/usePureMMForm';
 
 enum FormType {
   Basic,
@@ -87,6 +88,10 @@ export default defineComponent({
     const strategyName = ref(StrategyName.PureMarketMaking);
     const { fields } = useForm(strategyName);
     const formType = ref(FormType.Basic);
+
+    const form = usePureMMForm();
+
+    form.updateExchangeOptions();
 
     return {
       ...fields,

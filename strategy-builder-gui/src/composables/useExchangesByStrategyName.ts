@@ -4,14 +4,14 @@ import { computed, Ref } from 'vue';
 
 export { StrategyName } from 'src/stores/strategies';
 
-export const useExchangesByStrategyName = (category: Ref<StrategyName>) =>
+export const useExchangesByStrategyName = (strategyName: Ref<StrategyName>) =>
   computed(() =>
     Object.values(Exchange).filter((exchange) =>
       Object.values($strategies.value).find(
         (strategy) =>
           (strategy.categories.includes(StrategyCategory.All) ||
             strategy.categories.includes(exchange)) &&
-          strategy.strategyName === category.value,
+          strategy.strategyName === strategyName.value,
       ),
     ),
   );
