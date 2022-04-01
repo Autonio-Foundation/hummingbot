@@ -20,7 +20,6 @@ const exchangeOptions = ref(Object.values(Exchange));
 export const $arbitrageForm: $Form = {
   primaryMarket: {
     value: ref(''),
-    isMarket: true,
 
     properties: {
       options: exchangeOptions,
@@ -31,7 +30,6 @@ export const $arbitrageForm: $Form = {
   },
   secondaryMarket: {
     value: ref(''),
-    isMarket: true,
 
     properties: {
       options: exchangeOptions,
