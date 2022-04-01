@@ -17,7 +17,7 @@ export interface Select {
   value: Ref<string>;
   isMarket?: boolean;
   properties: {
-    options: string[] | Ref<unknown[]>;
+    options: Ref<string[]> | Ref<unknown[]>;
     labelText: string;
     title: string;
     hint: string;

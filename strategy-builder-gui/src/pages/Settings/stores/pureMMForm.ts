@@ -62,7 +62,7 @@ export const pureMMFormFileFieldsMap: FileMap = {
   orders: 'orders',
 };
 
-const exchangeOptions = Object.values(Exchange);
+const exchangeOptions = ref(Object.values(Exchange));
 
 export const $pureMMForm: $Form = {
   bidSpread: {
@@ -110,7 +110,7 @@ export const $pureMMForm: $Form = {
     isMarket: true,
 
     properties: {
-      options: [],
+      options: ref([]),
       labelText: 'Select market',
       title: 'Market',
       hint: '',
@@ -310,7 +310,7 @@ export const $pureMMForm: $Form = {
     value: ref(''),
 
     properties: {
-      options: ['1', '2', '3', '4', '5'],
+      options: ref(['1', '2', '3', '4', '5']),
       labelText: 'Choose source',
       title: 'Price source',
       hint: '',
@@ -320,7 +320,7 @@ export const $pureMMForm: $Form = {
     value: ref(''),
 
     properties: {
-      options: ['1', '2', '3', '4', '5'],
+      options: ref(['1', '2', '3', '4', '5']),
       labelText: 'Choose type',
       title: 'Order refresh time',
       hint: 'Price type',
@@ -330,7 +330,7 @@ export const $pureMMForm: $Form = {
     value: ref(''),
 
     properties: {
-      options: ['1', '2', '3', '4', '5'],
+      options: ref(['1', '2', '3', '4', '5']),
       labelText: 'Choose exchange',
       title: 'Price source exchange',
       hint: '',
@@ -340,7 +340,7 @@ export const $pureMMForm: $Form = {
     value: ref(''),
 
     properties: {
-      options: ['1', '2', '3', '4', '5'],
+      options: ref(['1', '2', '3', '4', '5']),
       labelText: 'Choose pair',
       title: 'Price source market',
       hint: '',

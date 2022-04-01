@@ -15,7 +15,7 @@ export const arbitrageFieldsFileMap = {
   secondaryToPrimaryQuoteConversionRate: 'secondary_to_primary_quote_conversion_rate',
 };
 
-const exchangeOptions = Object.values(Exchange);
+const exchangeOptions = ref(Object.values(Exchange));
 
 export const $arbitrageForm: $Form = {
   primaryMarket: {
@@ -44,7 +44,7 @@ export const $arbitrageForm: $Form = {
     value: ref(''),
 
     properties: {
-      options: ['1', '2', '3', '4', '5'],
+      options: ref(['1', '2', '3', '4', '5']),
       labelText: 'Select trading pair',
       title: 'Primary market trading pair',
       hint: '',
@@ -54,7 +54,7 @@ export const $arbitrageForm: $Form = {
     value: ref(''),
 
     properties: {
-      options: ['1', '2', '3', '4', '5'],
+      options: ref(['1', '2', '3', '4', '5']),
       labelText: 'Select trading pair',
       title: 'Secondary market trading pair',
       hint: '',
