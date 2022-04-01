@@ -14,8 +14,10 @@ export const useArbitrageForm = () => {
   const updateExchangeOptions = () => {
     Object.values($arbitrageForm).forEach((val) => {
       const field = val as Select;
-      if (JSON.stringify(field.properties?.options) === JSON.stringify(Object.values(Exchange))) {
-        field.properties.options = exchanges.value;
+      if (
+        JSON.stringify(field.properties?.options?.value) === JSON.stringify(Object.values(Exchange))
+      ) {
+        field.properties.options.value = exchanges.value;
       }
     });
   };
