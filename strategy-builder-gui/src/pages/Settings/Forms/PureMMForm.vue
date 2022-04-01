@@ -63,6 +63,7 @@
   </div>
 </template>
 <script lang="ts">
+import { useExchangesByStrategyName } from 'src/composables/useExchangesByStrategyName';
 import { StrategyName } from 'src/composables/useStrategies';
 import { defineComponent, ref } from 'vue';
 
@@ -71,7 +72,6 @@ import FieldOrders from '../components/FieldOrders.vue';
 import FieldSelect from '../components/FieldSelect.vue';
 import FieldToggle from '../components/FieldToggle.vue';
 import { BtnToggleType, useForm } from '../composables/useForm';
-import { usePureMMForm } from '../composables/usePureMMForm';
 
 enum FormType {
   Basic,
@@ -86,12 +86,11 @@ export default defineComponent({
 
   setup() {
     const strategyName = ref(StrategyName.PureMarketMaking);
-    const { fields } = useForm(strategyName);
+    const exchanges = useExchangesByStrategyName(strategyName);
+    const { fields, updateOptions } = useForm(strategyName);
     const formType = ref(FormType.Basic);
 
-    const form = usePureMMForm();
-
-    form.updateExchangeOptions();
+    updateOptions('exchanges', exchanges.value);
 
     return {
       ...fields,

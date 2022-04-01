@@ -1,8 +1,9 @@
 import { StrategyName } from 'src/composables/useStrategies';
+import { Exchange } from 'src/stores/exchanges';
 import { computed, Ref } from 'vue';
 
 import { $form } from '../stores/form';
-import { FormValue, Order } from '../stores/form.types';
+import { FormValue, Order, Select } from '../stores/form.types';
 import { defaultOrder } from '../stores/pureMMForm';
 
 export { BtnToggleType } from '../stores/form.types';
@@ -38,5 +39,10 @@ export const useForm = (strategyName: Ref<StrategyName>) => {
     }
   };
 
-  return { fields: form, values, init, defaultOrder };
+  const updateOptions = (fieldName: string, value: Exchange[]) => {
+    const select = form[fieldName] as Select;
+    select.properties.options.value = value;
+  };
+
+  return { fields: form, values, init, defaultOrder, updateOptions };
 };

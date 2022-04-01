@@ -11,13 +11,13 @@
   </div>
 </template>
 <script lang="ts">
+import { useExchangesByStrategyName } from 'src/composables/useExchangesByStrategyName';
 import { StrategyName } from 'src/composables/useStrategies';
 import { defineComponent, ref } from 'vue';
 
 import FieldInput from '../components/FieldInput.vue';
 import FieldSelect from '../components/FieldSelect.vue';
 import FieldToggle from '../components/FieldToggle.vue';
-import { useArbitrageForm } from '../composables/useArbitrageForm';
 import { useForm } from '../composables/useForm';
 
 export default defineComponent({
@@ -26,11 +26,11 @@ export default defineComponent({
 
   setup() {
     const strategyName = ref(StrategyName.Arbitrage);
-    const { fields } = useForm(strategyName);
+    const exchanges = useExchangesByStrategyName(strategyName);
+    const { fields, updateOptions } = useForm(strategyName);
 
-    const form = useArbitrageForm();
-
-    form.updateExchangeOptions();
+    updateOptions('primaryMarket', exchanges.value);
+    updateOptions('secondaryMarket', exchanges.value);
 
     return {
       ...fields,
