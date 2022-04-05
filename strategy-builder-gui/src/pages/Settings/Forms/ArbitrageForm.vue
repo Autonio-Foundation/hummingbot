@@ -1,7 +1,7 @@
 <template>
   <div class="q-gutter-md">
     <FieldSelect v-bind="primaryMarket" />
-    <FieldSelect v-bind="primaryMarketTradingPair" />
+    <FieldSelect v-bind="primaryMarketTradingPair" :filter="true" />
     <FieldSelect v-bind="secondaryMarket" />
     <FieldSelect v-bind="secondaryMarketTradingPair" />
     <FieldInput v-bind="minProfitability" />
