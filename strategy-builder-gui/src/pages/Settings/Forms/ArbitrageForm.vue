@@ -1,6 +1,10 @@
 <template>
   <div class="q-gutter-md">
-    <FieldSelect v-bind="primaryMarket" />
+    <FieldSelect
+      v-bind="primaryMarket"
+      markets-field-name="primaryMarketTradingPair"
+      :strategy-name="strategyName"
+    />
     <FieldSelect v-bind="primaryMarketTradingPair" :filter="true" />
     <FieldSelect v-bind="secondaryMarket" />
     <FieldSelect v-bind="secondaryMarketTradingPair" />
@@ -27,13 +31,15 @@ export default defineComponent({
   setup() {
     const strategyName = ref(StrategyName.Arbitrage);
     const exchanges = useExchangesByStrategyName(strategyName);
-    const { fields, updateOptions } = useForm(strategyName);
+    const { fields, updateOptions, updateMarkets } = useForm(strategyName);
 
     updateOptions('primaryMarket', exchanges.value);
     updateOptions('secondaryMarket', exchanges.value);
 
     return {
       ...fields,
+      updateMarkets,
+      strategyName: strategyName.value,
     };
   },
 });

@@ -5,3 +5,10 @@ export enum Exchange {
   Kucoin = 'Kucoin',
   BinanceUS = 'BinanceUS',
 }
+
+export const $exchangeNameMap = {
+  [Exchange.Binance]: 'binance',
+  [Exchange.AscendEX]: 'ascendex',
+  [Exchange.CryptoCom]: 'kucoin',
+  [Exchange.BinanceUS]: 'binanceus',
+};
