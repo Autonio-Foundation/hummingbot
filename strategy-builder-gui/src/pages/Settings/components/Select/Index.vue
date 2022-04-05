@@ -15,7 +15,14 @@
     input-debounce="0"
     :use-input="filter"
     @filter="selectFilter"
-    @update:model-value="(value) => $emit('update:modelValue', value)"
+    @update:model-value="
+      (value) => {
+        $emit('update:modelValue', value);
+        if (marketsFieldName) {
+          updateMarkets(marketsFieldName, exchangeNameMap[value]);
+        }
+      }
+    "
   >
     <template #no-option>
       <q-item>
@@ -26,7 +33,11 @@
 </template>
 
 <script lang="ts">
+import { $exchangeNameMap } from 'src/stores/exchanges';
+import { StrategyName } from 'src/stores/strategies';
 import { defineComponent, PropType, Ref, ref } from 'vue';
+
+import { useForm } from '../../composables/useForm';
 
 export default defineComponent({
   props: {
@@ -39,13 +50,18 @@ export default defineComponent({
     labelText: { type: String, require: true, default: () => 'Select...' },
     name: { type: String, require: true, default: () => '' },
     filter: { type: Boolean, require: false, default: () => false },
+    marketsFieldName: { type: String, require: false, default: () => undefined },
+    strategyName: {
+      type: String as PropType<StrategyName>,
+      require: false,
+      default: () => StrategyName.PureMarketMaking,
+    },
   },
   emits: ['update:modelValue'],
 
   setup(props) {
     const exchanges = ref(props.options);
-
-    const defaultOptions = JSON.parse(JSON.stringify(props.options.value)) as string[];
+    const { updateMarkets } = useForm(ref(props.strategyName));
 
     const selectFilter = (inputValue: string, update: (callback: () => void) => void) => {
       const needle = inputValue.toLowerCase();
@@ -56,8 +72,9 @@ export default defineComponent({
           })
         : props.options.value;
       if (inputValue === '' && props.filter) {
+        // TODO: NEED TO GET PREV SELECT VALUE WHEN USER HAS CLEARED INPUT, THEN UPDATE MARKETS
         update(() => {
-          exchanges.value = defaultOptions;
+          // updateMarkets(props.marketsFieldName!, $exchangeNameMap[modelValue])
         });
       } else {
         update(() => {
@@ -65,9 +82,12 @@ export default defineComponent({
         });
       }
     };
+
     return {
       exchanges,
       selectFilter,
+      updateMarkets,
+      exchangeNameMap: $exchangeNameMap,
     };
   },
 });

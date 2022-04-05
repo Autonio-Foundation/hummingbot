@@ -1,3 +1,4 @@
+import ccxt from 'ccxt';
 import { StrategyName } from 'src/composables/useStrategies';
 import { Exchange } from 'src/stores/exchanges';
 import { computed, Ref } from 'vue';
@@ -44,5 +45,24 @@ export const useForm = (strategyName: Ref<StrategyName>) => {
     select.properties.options.value = value;
   };
 
-  return { fields: form, values, init, defaultOrder, updateOptions };
+  const updateMarkets = async (fieldName: string, value: string) => {
+    const select = form[fieldName] as Select;
+    const context = new (
+      ccxt as unknown as {
+        [key: string]: new (args: unknown[]) => {
+          loadMarkets: () => Promise<ccxt.Dictionary<ccxt.Market>>;
+        };
+      }
+    )[value]([null]);
+    const marketsDictionary = await context.loadMarkets();
+    const markets: string[] = [];
+
+    Object.values(marketsDictionary).forEach((val) => {
+      markets.push(val.symbol);
+    });
+
+    select.properties.options.value = markets;
+  };
+
+  return { fields: form, values, init, defaultOrder, updateOptions, updateMarkets };
 };
