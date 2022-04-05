@@ -12,25 +12,63 @@
     :dropdown-icon="`img:${require('./select-btn.svg')}`"
     popup-content-class="bg-mono-grey-2 q-px-md q-py-md"
     options-selected-class="bg-mono-grey-3 rounded-borders"
+    input-debounce="0"
+    :use-input="filter"
+    @filter="selectFilter"
     @update:model-value="(value) => $emit('update:modelValue', value)"
-  />
+  >
+    <template #no-option>
+      <q-item>
+        <q-item-section class="text-grey"> No results </q-item-section>
+      </q-item>
+    </template>
+  </q-select>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, PropType, Ref, ref } from 'vue';
 
 export default defineComponent({
   props: {
     modelValue: { type: String, require: true, default: () => '' },
-    options: { type: Array, require: true, default: () => ['1', '2'] },
+    options: {
+      type: Array as unknown as PropType<Ref<string[]>>,
+      require: true,
+      default: () => ['1', '2'],
+    },
     labelText: { type: String, require: true, default: () => 'Select...' },
     name: { type: String, require: true, default: () => '' },
+    filter: { type: Boolean, require: false, default: () => false },
   },
   emits: ['update:modelValue'],
+
   setup(props) {
     const exchanges = ref(props.options);
 
-    return { exchanges };
+    const defaultOptions = JSON.parse(JSON.stringify(props.options.value)) as string[];
+
+    const selectFilter = (inputValue: string, update: (callback: () => void) => void) => {
+      const needle = inputValue.toLowerCase();
+      const filteredOptions = props.filter
+        ? props.options.value.filter((v) => {
+            const val = v as string;
+            return val.toLowerCase().indexOf(needle) > -1;
+          })
+        : props.options.value;
+      if (inputValue === '' && props.filter) {
+        update(() => {
+          exchanges.value = defaultOptions;
+        });
+      } else {
+        update(() => {
+          exchanges.value = filteredOptions;
+        });
+      }
+    };
+    return {
+      exchanges,
+      selectFilter,
+    };
   },
 });
 </script>

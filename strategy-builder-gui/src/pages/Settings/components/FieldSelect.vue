@@ -4,6 +4,7 @@
       v-model="fieldValue.value"
       :options="properties.options"
       :label-text="properties.labelText"
+      :filter="filter"
     />
   </Field>
 </template>
@@ -20,6 +21,7 @@ export default defineComponent({
   props: {
     value: { type: Object as PropType<Ref<string>>, require: false, default: () => ({}) },
     properties: { type: Object, require: false, default: () => ({}) },
+    filter: { type: Boolean, require: false, default: () => false },
   },
 
   setup(props) {
