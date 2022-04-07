@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 
-import { Exchange } from './exchanges';
+import { ExchangeName } from './exchanges';
 
 export enum StrategyName {
   PureMarketMaking = 'pure-market-making',
@@ -11,9 +11,9 @@ enum StrategyCategoryDefault {
   All = 'All Exchanges',
 }
 
-export const StrategyCategory = { ...StrategyCategoryDefault, ...Exchange };
+export const StrategyCategory = { ...StrategyCategoryDefault, ...ExchangeName };
 
-export type StrategyCategory = StrategyCategoryDefault | Exchange;
+export type StrategyCategory = StrategyCategoryDefault | ExchangeName;
 
 interface Strategy {
   title: string;

@@ -30,10 +30,8 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   setup() {
-    const onClickUpload = () => {
-      // eslint-disable-next-line no-console
-      console.log('upload click');
-    };
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    const onClickUpload = () => {};
 
     return { onClickUpload };
   },

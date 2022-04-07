@@ -51,8 +51,6 @@ export default defineComponent({
 
     const handleSubmit = () => {
       localStorage.setItem(strategyName.value, JSON.stringify(values.value));
-      // eslint-disable-next-line no-console
-      console.log(values.value);
     };
 
     return {
