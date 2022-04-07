@@ -1,4 +1,4 @@
-import { Exchange } from 'src/stores/exchanges';
+import { ExchangeName } from 'src/stores/exchanges';
 import { StrategyName } from 'src/stores/strategies';
 import { ref } from 'vue';
 
@@ -62,7 +62,7 @@ export const pureMMFormFileFieldsMap: FileMap = {
   orders: 'orders',
 };
 
-const exchangeOptions = ref(Object.values(Exchange));
+const exchangeOptions = ref(Object.values(ExchangeName));
 
 export const $pureMMForm: $Form = {
   bidSpread: {

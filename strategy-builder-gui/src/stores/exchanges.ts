@@ -1,4 +1,6 @@
-export enum Exchange {
+import { Ref, ref } from 'vue';
+
+export enum ExchangeName {
   Binance = 'Binance',
   AscendEX = 'AscendEX',
   CryptoCom = 'Crypto.com',
@@ -7,9 +9,11 @@ export enum Exchange {
 }
 
 export const $exchangeNameMap = {
-  [Exchange.Binance]: 'binance',
-  [Exchange.AscendEX]: 'ascendex',
-  [Exchange.CryptoCom]: 'cryptocom',
-  [Exchange.BinanceUS]: 'binanceus',
-  [Exchange.Kucoin]: 'kukoin',
+  [ExchangeName.Binance]: 'binance',
+  [ExchangeName.AscendEX]: 'ascendex',
+  [ExchangeName.CryptoCom]: 'cryptocom',
+  [ExchangeName.BinanceUS]: 'binanceus',
+  [ExchangeName.Kucoin]: 'kukoin',
 };
+
+export const $markets: Ref<{ [key in `${ExchangeName}`]?: string[] }> = ref({});

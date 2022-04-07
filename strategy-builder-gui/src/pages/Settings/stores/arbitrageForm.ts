@@ -1,4 +1,4 @@
-import { Exchange } from 'src/stores/exchanges';
+import { ExchangeName } from 'src/stores/exchanges';
 import { StrategyName } from 'src/stores/strategies';
 import { ref } from 'vue';
 
@@ -15,7 +15,7 @@ export const arbitrageFieldsFileMap = {
   secondaryToPrimaryQuoteConversionRate: 'secondary_to_primary_quote_conversion_rate',
 };
 
-const exchangeOptions = ref(Object.values(Exchange));
+const exchangeOptions = ref(Object.values(ExchangeName));
 
 export const $arbitrageForm: $Form = {
   primaryMarket: {

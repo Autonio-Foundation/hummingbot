@@ -1,6 +1,6 @@
 import ccxt from 'ccxt';
 import { StrategyName } from 'src/composables/useStrategies';
-import { Exchange } from 'src/stores/exchanges';
+import { $markets, ExchangeName } from 'src/stores/exchanges';
 import { computed, Ref } from 'vue';
 
 import { $form } from '../stores/form';
@@ -40,14 +40,33 @@ export const useForm = (strategyName: Ref<StrategyName>) => {
     }
   };
 
-  const updateOptions = (fieldName: string, value: Exchange[]) => {
+  const updateOptions = (fieldName: string, value: ExchangeName[]) => {
     const select = form[fieldName] as Select;
     select.properties.options.value = value;
   };
 
-  const updateMarkets = (fieldName: string, markets: string[]) => {
-    const select = form[fieldName] as Select;
-    select.properties.options.value = markets;
+  const updateMarkets = (exchangeName: ExchangeName, markets: string[]) => {
+    $markets.value[exchangeName] = markets;
+  };
+
+  const filterMarkets = (
+    exchangeName: ExchangeName,
+    fieldName: string,
+    val: string,
+    update: (callback: () => void) => void,
+  ) => {
+    if (val === '') {
+      update(() => {
+        (form[fieldName] as Select).properties.options.value = $markets.value[exchangeName] || [];
+      });
+      return;
+    }
+
+    update(() => {
+      (form[fieldName] as Select).properties.options.value = (
+        $markets.value[exchangeName] || []
+      ).filter((value) => value.toLowerCase().indexOf(val.toLowerCase()) > -1);
+    });
   };
 
   const getMarkets = async (value: string) => {
@@ -68,5 +87,14 @@ export const useForm = (strategyName: Ref<StrategyName>) => {
     return markets;
   };
 
-  return { fields: form, values, init, defaultOrder, updateOptions, updateMarkets, getMarkets };
+  return {
+    fields: form,
+    values,
+    init,
+    defaultOrder,
+    updateOptions,
+    updateMarkets,
+    filterMarkets,
+    getMarkets,
+  };
 };
