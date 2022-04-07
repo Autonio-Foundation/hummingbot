@@ -12,15 +12,9 @@
     :dropdown-icon="`img:${require('./select-btn.svg')}`"
     popup-content-class="bg-mono-grey-2 q-px-md q-py-md"
     options-selected-class="bg-mono-grey-3 rounded-borders"
-    input-debounce="0"
-    :use-input="filter"
-    @filter="selectFilter"
     @update:model-value="
       (value) => {
         $emit('update:modelValue', value);
-        if (marketsFieldName) {
-          updateMarkets(marketsFieldName, exchangeNameMap[value]);
-        }
       }
     "
   >
@@ -33,11 +27,7 @@
 </template>
 
 <script lang="ts">
-import { $exchangeNameMap } from 'src/stores/exchanges';
-import { StrategyName } from 'src/stores/strategies';
 import { defineComponent, PropType, Ref, ref } from 'vue';
-
-import { useForm } from '../../composables/useForm';
 
 export default defineComponent({
   props: {
@@ -49,45 +39,14 @@ export default defineComponent({
     },
     labelText: { type: String, require: true, default: () => 'Select...' },
     name: { type: String, require: true, default: () => '' },
-    filter: { type: Boolean, require: false, default: () => false },
-    marketsFieldName: { type: String, require: false, default: () => undefined },
-    strategyName: {
-      type: String as PropType<StrategyName>,
-      require: false,
-      default: () => StrategyName.PureMarketMaking,
-    },
   },
   emits: ['update:modelValue'],
 
   setup(props) {
     const exchanges = ref(props.options);
-    const { updateMarkets } = useForm(ref(props.strategyName));
-
-    const selectFilter = (inputValue: string, update: (callback: () => void) => void) => {
-      const needle = inputValue.toLowerCase();
-      const filteredOptions = props.filter
-        ? props.options.value.filter((v) => {
-            const val = v as string;
-            return val.toLowerCase().indexOf(needle) > -1;
-          })
-        : props.options.value;
-      if (inputValue === '' && props.filter) {
-        // TODO: NEED TO GET PREV SELECT VALUE WHEN USER HAS CLEARED INPUT, THEN UPDATE MARKETS
-        update(() => {
-          // updateMarkets(props.marketsFieldName!, $exchangeNameMap[modelValue])
-        });
-      } else {
-        update(() => {
-          exchanges.value = filteredOptions;
-        });
-      }
-    };
 
     return {
       exchanges,
-      selectFilter,
-      updateMarkets,
-      exchangeNameMap: $exchangeNameMap,
     };
   },
 });

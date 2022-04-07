@@ -2,17 +2,16 @@
   <Field :title="properties.title" :hint="properties.hint" :type="FieldType.Select">
     <Select
       v-model="fieldValue.value"
-      :options="properties.options"
+      :options="options"
       :label-text="properties.labelText"
-      :filter="filter"
-      :markets-field-name="marketsFieldName"
-      :strategy-name="strategyName"
+      :use-input="isInput"
+      @filter="filter"
+      @update:modelValue="onSelectUpdate"
     />
   </Field>
 </template>
 
 <script lang="ts">
-import { StrategyName } from 'src/stores/strategies';
 import { computed, defineComponent, PropType, Ref } from 'vue';
 
 import { FieldType } from '../stores/form.types';
@@ -23,20 +22,29 @@ export default defineComponent({
   components: { Field, Select },
   props: {
     value: { type: Object as PropType<Ref<string>>, require: false, default: () => ({}) },
-    marketsFieldName: { type: String, require: false, default: () => '' },
-    strategyName: {
-      type: String as PropType<StrategyName>,
-      require: false,
-      default: () => StrategyName.PureMarketMaking,
-    },
+
     properties: { type: Object, require: false, default: () => ({}) },
-    filter: { type: Boolean, require: false, default: () => false },
+    isInput: { type: Boolean, require: false, default: () => false },
+    onSelectUpdate: { type: Function, require: false, default: () => ({}) },
   },
 
   setup(props) {
     const fieldValue = computed(() => props.value);
 
-    return { FieldType, fieldValue };
+    /*
+     1. GET STATIC MARKETS OPTIONS FOR FILTER
+     2. set filtered values to props.properties.options.value:
+      props.properties.options.value = staticMarkets.filter(...)
+     3.
+    */
+
+    const filter = (inputValue: string, update: (callback: () => void) => void) => {
+      update(() => {
+        // d
+      });
+    };
+
+    return { FieldType, fieldValue, filter };
   },
 });
 </script>
