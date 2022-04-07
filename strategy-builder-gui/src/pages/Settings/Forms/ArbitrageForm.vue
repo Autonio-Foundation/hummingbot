@@ -2,12 +2,11 @@
   <div class="q-gutter-md">
     <FieldSelect
       v-bind="primaryMarket"
-      markets-field-name="primaryMarketTradingPair"
-      :strategy-name="strategyName"
+      :on-select-update="(val) => onSelectUpdate(val, 'primaryMarketTradingPair')"
     />
-    <FieldSelect v-bind="primaryMarketTradingPair" :filter="true" />
+    <FieldSelect v-bind="primaryMarketTradingPair" :is-input="true" />
     <FieldSelect v-bind="secondaryMarket" />
-    <FieldSelect v-bind="secondaryMarketTradingPair" />
+    <FieldSelect v-bind="secondaryMarketTradingPair" :default-options="secondaryMarketOptions" />
     <FieldInput v-bind="minProfitability" />
     <FieldToggle v-bind="useOracleConversionRate" />
     <FieldInput v-bind="secondaryToPrimaryBaseConversionRate" />
@@ -17,6 +16,7 @@
 <script lang="ts">
 import { useExchangesByStrategyName } from 'src/composables/useExchangesByStrategyName';
 import { StrategyName } from 'src/composables/useStrategies';
+import { $exchangeNameMap, Exchange } from 'src/stores/exchanges';
 import { defineComponent, ref } from 'vue';
 
 import FieldInput from '../components/FieldInput.vue';
@@ -31,15 +31,19 @@ export default defineComponent({
   setup() {
     const strategyName = ref(StrategyName.Arbitrage);
     const exchanges = useExchangesByStrategyName(strategyName);
-    const { fields, updateOptions, updateMarkets } = useForm(strategyName);
+    const { fields, updateOptions, updateMarkets, getMarkets } = useForm(strategyName);
 
     updateOptions('primaryMarket', exchanges.value);
     updateOptions('secondaryMarket', exchanges.value);
 
+    const onSelectUpdate = async (val: string, selectForUpdateName: string) => {
+      const markets = await getMarkets($exchangeNameMap[val as unknown as Exchange]);
+      updateMarkets(selectForUpdateName, markets);
+    };
+
     return {
       ...fields,
-      updateMarkets,
-      strategyName: strategyName.value,
+      onSelectUpdate,
     };
   },
 });
