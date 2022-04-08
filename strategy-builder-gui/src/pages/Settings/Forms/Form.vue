@@ -21,21 +21,24 @@ import { useFileHref } from '../composables/useFileHref';
 import { useForm } from '../composables/useForm';
 import { useSteps } from '../composables/useSteps';
 import ArbitrageForm from './ArbitrageForm.vue';
+import LiquidityForm from './LiquidityForm.vue';
 import PureMMForm from './PureMMForm.vue';
 import SaveForm from './SaveForm.vue';
 
 const componentsMap = {
   [StrategyName.PureMarketMaking]: PureMMForm.name,
   [StrategyName.Arbitrage]: ArbitrageForm.name,
+  [StrategyName.Liquidity]: LiquidityForm.name,
 };
 
 const titleDisplayMap = {
   [StrategyName.PureMarketMaking]: 'Pure Market Making',
   [StrategyName.Arbitrage]: 'Arbitrage',
+  [StrategyName.Liquidity]: 'Liquidity',
 };
 
 export default defineComponent({
-  components: { PureMMForm, SaveForm, Pager, ArbitrageForm },
+  components: { PureMMForm, SaveForm, Pager, ArbitrageForm, LiquidityForm },
 
   setup() {
     const steps = useSteps();
