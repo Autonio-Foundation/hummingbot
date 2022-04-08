@@ -35,7 +35,7 @@ export default defineComponent({
     options: {
       type: Array as unknown as PropType<Ref<string[]>>,
       require: true,
-      default: () => ['1', '2'],
+      default: () => [],
     },
     labelText: { type: String, require: true, default: () => 'Select...' },
     name: { type: String, require: true, default: () => '' },
