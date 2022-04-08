@@ -3,7 +3,10 @@
     <FieldSelect v-bind="primaryMarket" :on-select-update="handleSelectUpdate" />
     <FieldInputSelect v-bind="primaryMarketTradingPair" :filter="filterPrimaryMarketTradingPair" />
     <FieldSelect v-bind="secondaryMarket" />
-    <FieldSelect v-bind="secondaryMarketTradingPair" :default-options="secondaryMarketOptions" />
+    <FieldInputSelect
+      v-bind="secondaryMarketTradingPair"
+      :filter="filterSecondaryMarketTradingPair"
+    />
     <FieldInput v-bind="minProfitability" />
     <FieldToggle v-bind="useOracleConversionRate" />
     <FieldInput v-bind="secondaryToPrimaryBaseConversionRate" />
@@ -49,10 +52,22 @@ export default defineComponent({
         update,
       );
 
+    const filterSecondaryMarketTradingPair = (
+      val: string,
+      update: (callback: () => void) => void,
+    ) =>
+      filterMarkets(
+        (fields.secondaryMarket as Select).value.value as ExchangeName,
+        'secondaryMarketTradingPair',
+        val,
+        update,
+      );
+
     return {
       ...fields,
       handleSelectUpdate,
       filterPrimaryMarketTradingPair,
+      filterSecondaryMarketTradingPair,
     };
   },
 });
