@@ -24,8 +24,8 @@
     </q-btn>
   </div>
   <div v-if="formType === FormType.Basic" class="q-gutter-md">
-    <FieldSelect v-bind="exchange" />
-    <FieldSelect v-bind="market" />
+    <FieldSelect v-bind="exchange" :on-select-update="handleSelectUpdate" />
+    <FieldInputSelect v-bind="market" :filter="filterMarketsSelect" />
     <FieldInput v-bind="bidSpread" />
     <FieldInput v-bind="askSpread" />
     <FieldInput v-bind="orderRefreshTime" />
@@ -65,13 +65,16 @@
 <script lang="ts">
 import { useExchangesByStrategyName } from 'src/composables/useExchangesByStrategyName';
 import { StrategyName } from 'src/composables/useStrategies';
+import { $exchangeNameMap, ExchangeName } from 'src/stores/exchanges';
 import { defineComponent, ref } from 'vue';
 
 import FieldInput from '../components/FieldInput.vue';
+import FieldInputSelect from '../components/FieldInputSelect.vue';
 import FieldOrders from '../components/FieldOrders.vue';
 import FieldSelect from '../components/FieldSelect.vue';
 import FieldToggle from '../components/FieldToggle.vue';
 import { BtnToggleType, useForm } from '../composables/useForm';
+import { Select } from '../stores/form.types';
 
 enum FormType {
   Basic,
@@ -80,17 +83,28 @@ enum FormType {
 
 export default defineComponent({
   name: 'PureMMForm',
-  components: { FieldInput, FieldSelect, FieldToggle, FieldOrders },
+  components: { FieldInput, FieldSelect, FieldToggle, FieldOrders, FieldInputSelect },
 
   emits: ['update:formType'],
 
   setup() {
     const strategyName = ref(StrategyName.PureMarketMaking);
     const exchanges = useExchangesByStrategyName(strategyName);
-    const { fields, updateOptions } = useForm(strategyName);
+    const { fields, updateOptions, updateMarkets, filterMarkets, getMarkets } =
+      useForm(strategyName);
     const formType = ref(FormType.Basic);
 
-    updateOptions('exchanges', exchanges.value);
+    updateOptions('exchange', exchanges.value);
+
+    const handleSelectUpdate = async (val: ExchangeName) => {
+      console.log($exchangeNameMap[val]);
+
+      const markets = await getMarkets($exchangeNameMap[val]);
+      updateMarkets(val, markets);
+    };
+
+    const filterMarketsSelect = (val: string, update: (callback: () => void) => void) =>
+      filterMarkets((fields.exchange as Select).value.value as ExchangeName, 'market', val, update);
 
     return {
       ...fields,
@@ -98,6 +112,8 @@ export default defineComponent({
       FormType,
       BtnToggleType,
       strategyName,
+      handleSelectUpdate,
+      filterMarketsSelect,
     };
   },
 });
