@@ -5,7 +5,6 @@
       :options="properties.options"
       :label-text="properties.labelText"
       :use-input="isInput"
-      @filter="filter"
       @update:modelValue="onSelectUpdate"
     />
   </Field>
@@ -31,20 +30,7 @@ export default defineComponent({
   setup(props) {
     const fieldValue = computed(() => props.value);
 
-    /*
-     1. GET STATIC MARKETS OPTIONS FOR FILTER
-     2. set filtered values to props.properties.options.value:
-      props.properties.options.value = staticMarkets.filter(...)
-     3.
-    */
-
-    const filter = (inputValue: string, update: (callback: () => void) => void) => {
-      update(() => {
-        // d
-      });
-    };
-
-    return { FieldType, fieldValue, filter };
+    return { FieldType, fieldValue };
   },
 });
 </script>

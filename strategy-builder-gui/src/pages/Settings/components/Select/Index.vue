@@ -10,7 +10,7 @@
     :model-value="modelValue"
     label-color="mono-grey-3"
     :dropdown-icon="`img:${require('./select-btn.svg')}`"
-    popup-content-class="bg-mono-grey-2 q-px-md q-py-md"
+    popup-content-class="select-menu bg-mono-grey-2 q-px-md q-py-md"
     options-selected-class="bg-mono-grey-3 rounded-borders"
     @update:model-value="
       (value) => {
@@ -87,8 +87,25 @@ export default defineComponent({
   display: none;
 }
 
+.form-select input {
+  text-align: right;
+}
+
 .form-select .q-field__native {
   justify-content: end;
+}
+
+.select-menu::-webkit-scrollbar-track {
+  background-color: map.get($colors, 'mono-grey-3');
+}
+
+.select-menu::-webkit-scrollbar {
+  width: 10px;
+  background-color: map.get($colors, 'mono-grey-1');
+}
+
+.select-menu::-webkit-scrollbar-thumb {
+  background-color: map.get($colors, 'mono-grey-1');
 }
 
 .form-select .q-field__label {
