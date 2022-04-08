@@ -97,8 +97,6 @@ export default defineComponent({
     updateOptions('exchange', exchanges.value);
 
     const handleSelectUpdate = async (val: ExchangeName) => {
-      console.log($exchangeNameMap[val]);
-
       const markets = await getMarkets($exchangeNameMap[val]);
       updateMarkets(val, markets);
     };
