@@ -1,10 +1,20 @@
 <template>
   <div class="q-gutter-md">
-    <FieldSelect v-bind="secondaryMarket" />
-    <FieldInput v-bind="minProfitability" />
-    <FieldToggle v-bind="useOracleConversionRate" />
-    <FieldInput v-bind="secondaryToPrimaryBaseConversionRate" />
-    <FieldInput v-bind="secondaryToPrimaryQuoteConversionRate" />
+    <FieldSelect v-bind="exchange" />
+    <FieldSelect v-bind="markets" />
+    <FieldSelect v-bind="token" />
+    <FieldInput v-bind="orderAmount" />
+    <FieldInput v-bind="spread" />
+    <FieldToggle v-bind="inventorySkew" />
+    <FieldInput v-bind="targetBase" />
+    <FieldInput v-bind="orderRefreshTime" />
+    <FieldInput v-bind="orderRefreshTolerance" />
+    <FieldInput v-bind="inventoryRangeMultiplier" />
+    <FieldInput v-bind="volatilityInterval" />
+    <FieldInput v-bind="avgVolatilityPeriod" />
+    <FieldInput v-bind="volatilityToSpreadMultiplier" />
+    <FieldInput v-bind="maxSpread" />
+    <FieldInput v-bind="maxOrderAge" />
   </div>
 </template>
 <script lang="ts">
@@ -21,7 +31,7 @@ export default defineComponent({
   components: { FieldInput, FieldSelect, FieldToggle },
 
   setup() {
-    const strategyName = ref(StrategyName.Arbitrage);
+    const strategyName = ref(StrategyName.Liquidity);
     const { fields } = useForm(strategyName);
 
     return {

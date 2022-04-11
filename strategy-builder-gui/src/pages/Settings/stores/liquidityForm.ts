@@ -39,8 +39,8 @@ export const $liquidityForm: $Form = {
 
     properties: {
       options: exchangeOptions,
-      labelText: 'Select exchange',
-      title: 'Exchange',
+      labelText: 'Select markets',
+      title: 'Markets',
       hint: '',
     },
   },
