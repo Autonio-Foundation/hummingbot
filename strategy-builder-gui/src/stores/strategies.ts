@@ -47,6 +47,16 @@ const strategies: Strategy[] = [
     placeType: 'equal',
     categories: [StrategyCategory.Binance],
   },
+  {
+    title: 'Liquidity',
+    description:
+      'This strategy allows Hummingbot users to run a market making strategy on a single trading pair on a spot exchanges.',
+    fileHref: '/',
+    strategyName: StrategyName.Liquidity,
+    place: 3,
+    placeType: 'equal',
+    categories: [StrategyCategory.AscendEX, StrategyCategory.Binance],
+  },
 ];
 
 export const $strategies = ref(strategies);
