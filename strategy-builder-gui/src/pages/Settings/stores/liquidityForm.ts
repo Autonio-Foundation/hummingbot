@@ -38,7 +38,7 @@ export const $liquidityForm: $Form = {
     value: ref(''),
 
     properties: {
-      options: exchangeOptions,
+      options: ref([]),
       labelText: 'Select markets',
       title: 'Markets',
       hint: '',
@@ -89,6 +89,16 @@ export const $liquidityForm: $Form = {
 
     properties: {
       title: 'Target base',
+      hint: '',
+      placeholder: '0',
+      rightText: '',
+    },
+  },
+  orderRefreshTime: {
+    value: ref(''),
+
+    properties: {
+      title: 'Order refresh time',
       hint: '',
       placeholder: '0',
       rightText: '',
