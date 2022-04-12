@@ -2,7 +2,7 @@
   <div class="q-gutter-md">
     <FieldSelect v-bind="exchange" :on-select-update="handleSelectUpdate" />
     <FieldInputSelect v-bind="markets" :filter="filterMarketsField" />
-    <FieldSelect v-bind="token" />
+    <FieldInputSelect v-bind="token" :filter="filterTokenField" />
     <FieldInput v-bind="orderAmount" />
     <FieldInput v-bind="spread" />
     <FieldToggle v-bind="inventorySkew" />
@@ -55,10 +55,14 @@ export default defineComponent({
         update,
       );
 
+    const filterTokenField = (val: string, update: (callback: () => void) => void) =>
+      filterMarkets((fields.exchange as Select).value.value as ExchangeName, 'token', val, update);
+
     return {
       ...fields,
       handleSelectUpdate,
       filterMarketsField,
+      filterTokenField,
     };
   },
 });
