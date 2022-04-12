@@ -1,4 +1,5 @@
 import { ExchangeName } from 'src/stores/exchanges';
+import { StrategyName } from 'src/stores/strategies';
 import { ref } from 'vue';
 
 import { $Form, FileMap } from './form.types';
@@ -173,6 +174,17 @@ export const $liquidityForm: $Form = {
       hint: '',
       placeholder: '0',
       rightText: '',
+    },
+  },
+
+  fileName: {
+    value: ref(StrategyName.Liquidity),
+
+    properties: {
+      title: '',
+      hint: '',
+      placeholder: 'Title',
+      rightText: '.yml',
     },
   },
 };
