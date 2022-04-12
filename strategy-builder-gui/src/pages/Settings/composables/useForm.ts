@@ -1,6 +1,6 @@
 import ccxt from 'ccxt';
 import { StrategyName } from 'src/composables/useStrategies';
-import { $markets, ExchangeName } from 'src/stores/exchanges';
+import { $markets, $tokens, ExchangeName } from 'src/stores/exchanges';
 import { computed, Ref } from 'vue';
 
 import { $form } from '../stores/form';
@@ -49,6 +49,10 @@ export const useForm = (strategyName: Ref<StrategyName>) => {
     $markets.value[exchangeName] = markets;
   };
 
+  const updateTokens = (exchangeName: ExchangeName, tokens: string[]) => {
+    $tokens.value[exchangeName] = tokens;
+  };
+
   const filterMarkets = (
     exchangeName: ExchangeName,
     fieldName: string,
@@ -65,6 +69,26 @@ export const useForm = (strategyName: Ref<StrategyName>) => {
     update(() => {
       (form[fieldName] as Select).properties.options.value = (
         $markets.value[exchangeName] || []
+      ).filter((value) => value.toLowerCase().indexOf(val.toLowerCase()) > -1);
+    });
+  };
+
+  const filterTokens = (
+    exchangeName: ExchangeName,
+    fieldName: string,
+    val: string,
+    update: (callback: () => void) => void,
+  ) => {
+    if (val === '') {
+      update(() => {
+        (form[fieldName] as Select).properties.options.value = $tokens.value[exchangeName] || [];
+      });
+      return;
+    }
+
+    update(() => {
+      (form[fieldName] as Select).properties.options.value = (
+        $tokens.value[exchangeName] || []
       ).filter((value) => value.toLowerCase().indexOf(val.toLowerCase()) > -1);
     });
   };
@@ -87,6 +111,22 @@ export const useForm = (strategyName: Ref<StrategyName>) => {
     return markets;
   };
 
+  const getTokens = (markets: string[]) => {
+    const tokens: string[] = [];
+
+    markets.forEach((market) => {
+      const symbolTokens = market.split('/');
+
+      symbolTokens.forEach((token: string) => {
+        if (!tokens.includes(token)) {
+          tokens.push(token);
+        }
+      });
+    });
+
+    return tokens;
+  };
+
   return {
     fields: form,
     values,
@@ -94,7 +134,10 @@ export const useForm = (strategyName: Ref<StrategyName>) => {
     defaultOrder,
     updateOptions,
     updateMarkets,
+    updateTokens,
     filterMarkets,
+    filterTokens,
     getMarkets,
+    getTokens,
   };
 };
