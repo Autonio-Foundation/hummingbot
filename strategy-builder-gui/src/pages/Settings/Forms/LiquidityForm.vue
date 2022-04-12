@@ -36,26 +36,16 @@ export default defineComponent({
 
   setup() {
     const strategyName = ref(StrategyName.Liquidity);
-    const {
-      fields,
-      updateOptions,
-      updateMarkets,
-      filterMarkets,
-      getMarkets,
-      getTokens,
-      updateTokens,
-      filterTokens,
-    } = useForm(strategyName);
+    const { fields, updateOptions, updateMarkets, filterMarkets, getMarkets, filterTokens } =
+      useForm(strategyName);
     const exchanges = useExchangesByStrategyName(strategyName);
 
     updateOptions('exchange', exchanges.value);
 
     const handleSelectUpdate = async (val: ExchangeName) => {
       const markets = await getMarkets($exchangeNameMap[val]);
-      const tokens = getTokens(markets);
 
       updateMarkets(val, markets);
-      updateTokens(val, tokens);
     };
 
     const filterMarketsField = (val: string, update: (callback: () => void) => void) =>
