@@ -6,7 +6,7 @@ import { $Form, FileMap } from './form.types';
 const exchangeOptions = ref(Object.values(ExchangeName));
 
 export const liquidityFormFileFieldsMap: FileMap = {
-  exchange: 'exhcnage',
+  exchange: 'exchange',
   markets: 'markets',
   token: 'token',
   orderAmount: 'order_amount',
