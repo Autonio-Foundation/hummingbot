@@ -17,4 +17,3 @@ export const $exchangeNameMap = {
 };
 
 export const $markets: Ref<{ [key in `${ExchangeName}`]?: string[] }> = ref({});
-export const $tokens: Ref<{ [key in `${ExchangeName}`]?: string[] }> = ref({});
