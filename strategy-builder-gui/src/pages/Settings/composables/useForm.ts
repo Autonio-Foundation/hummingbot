@@ -87,21 +87,11 @@ export const useForm = (strategyName: Ref<StrategyName>) => {
     return markets;
   };
 
-  const getTokens = (markets: string[]) => {
-    const tokens: string[] = [];
-
-    markets.forEach((market) => {
-      const symbolTokens = market.split('/');
-
-      symbolTokens.forEach((token: string) => {
-        if (!tokens.includes(token)) {
-          tokens.push(token);
-        }
-      });
-    });
-
-    return tokens;
-  };
+  const getTokens = (markets: string[]) => [
+    ...new Set(
+      markets.reduce((accTokens: string[], market) => [...accTokens, ...market.split('/')], []),
+    ),
+  ];
 
   const filterTokens = (
     exchangeName: ExchangeName,
