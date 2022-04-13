@@ -12,6 +12,12 @@ enum StrategyCategoryDefault {
   All = 'All Exchanges',
 }
 
+export const $strategyNameDisplayMap = {
+  [StrategyName.PureMarketMaking]: 'Pure Market Making',
+  [StrategyName.Arbitrage]: 'Arbitrage',
+  [StrategyName.Liquidity]: 'Liquidity',
+};
+
 export const StrategyCategory = { ...StrategyCategoryDefault, ...ExchangeName };
 
 export type StrategyCategory = StrategyCategoryDefault | ExchangeName;
