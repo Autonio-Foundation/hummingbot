@@ -1,7 +1,7 @@
 <template #header>
   <q-toolbar class="row flex items-center q-mb-lg q-px-none">
     <div class="col">
-      <router-link class="q-px-none q-py-none" to="/">
+      <router-link class="q-px-none q-py-none" :to="{ name: 'strategies' }">
         <q-img
           :src="require('./header-logo.svg')"
           fit="contain"
