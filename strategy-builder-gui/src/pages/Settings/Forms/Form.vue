@@ -14,8 +14,8 @@
 <script lang="ts">
 import { StrategyName } from 'src/composables/useStrategies';
 import { computed, defineComponent } from 'vue';
-import { useRoute } from 'vue-router';
 
+import { useStrategyName } from '../../../composables/useStrategyName';
 import Pager from '../components/Pager/Index.vue';
 import { useFileHref } from '../composables/useFileHref';
 import { useForm } from '../composables/useForm';
@@ -42,8 +42,9 @@ export default defineComponent({
 
   setup() {
     const steps = useSteps();
-    const route = useRoute();
-    const strategyName = computed(() => route.params.strategyName as StrategyName);
+
+    const strategyName = useStrategyName();
+
     const { values, init } = useForm(strategyName);
 
     init();
