@@ -4,7 +4,6 @@
       v-model="fieldValue.value"
       :options="properties.options"
       :label-text="properties.labelText"
-      :use-input="isInput"
       @update:modelValue="onSelectUpdate"
     />
   </Field>
@@ -23,7 +22,6 @@ export default defineComponent({
     value: { type: Object as PropType<Ref<string>>, require: false, default: () => ({}) },
 
     properties: { type: Object, require: false, default: () => ({}) },
-    isInput: { type: Boolean, require: false, default: () => false },
     onSelectUpdate: { type: Function, require: false, default: () => ({}) },
   },
 
