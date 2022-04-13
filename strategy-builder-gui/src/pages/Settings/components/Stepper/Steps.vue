@@ -17,6 +17,8 @@
 </template>
 
 <script lang="ts">
+import { useStrategyName } from 'src/composables/useStrategyName';
+import { $strategyNameDisplayMap } from 'src/stores/strategies';
 import { defineComponent } from 'vue';
 
 import { useSteps } from '../../composables/useSteps';
@@ -31,10 +33,12 @@ export default defineComponent({
   components: { Step },
   setup() {
     const steps = useSteps();
+
+    const strategyName = useStrategyName();
     const stepsData: StepType[] = [
       {
         title: '1. Choose strategy',
-        description: 'Pure market making',
+        description: $strategyNameDisplayMap[strategyName.value],
       },
       {
         title: '2. Choose settings',
