@@ -13,6 +13,7 @@
 
 <script lang="ts">
 import { StrategyName } from 'src/composables/useStrategies';
+import { $strategyNameDisplayMap } from 'src/stores/strategies';
 import { computed, defineComponent } from 'vue';
 
 import { useStrategyName } from '../../../composables/useStrategyName';
@@ -29,12 +30,6 @@ const componentsMap = {
   [StrategyName.PureMarketMaking]: PureMMForm.name,
   [StrategyName.Arbitrage]: ArbitrageForm.name,
   [StrategyName.Liquidity]: LiquidityForm.name,
-};
-
-const titleDisplayMap = {
-  [StrategyName.PureMarketMaking]: 'Pure Market Making',
-  [StrategyName.Arbitrage]: 'Arbitrage',
-  [StrategyName.Liquidity]: 'Liquidity',
 };
 
 export default defineComponent({
@@ -60,7 +55,7 @@ export default defineComponent({
     return {
       componentsMap,
       displaySaveForm,
-      titleDisplayMap,
+      titleDisplayMap: $strategyNameDisplayMap,
       handleSubmit,
       currentStep: steps.current,
       strategyName,
