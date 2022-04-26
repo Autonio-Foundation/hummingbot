@@ -321,8 +321,8 @@ export const $pureMMForm: $Form = {
     properties: {
       options: ref(['1', '2', '3', '4', '5']),
       labelText: 'Choose type',
-      title: 'Order refresh time',
-      hint: 'Price type',
+      title: 'Price type',
+      hint: '',
     },
   },
   priceSourceExchange: {
