@@ -5,7 +5,7 @@ import { ExchangeName } from './exchanges';
 export enum StrategyName {
   PureMarketMaking = 'pure-market-making',
   Arbitrage = 'arbitrage',
-  Liquidity = 'liquidity',
+  Liquidity = 'liquidity-mining',
 }
 
 enum StrategyCategoryDefault {
