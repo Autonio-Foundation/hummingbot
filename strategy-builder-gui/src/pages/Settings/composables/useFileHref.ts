@@ -5,6 +5,12 @@ import { $fileMap } from '../stores/form';
 import { Order } from '../stores/form.types';
 import { useForm } from './useForm';
 
+const templateVersionMap = {
+  [StrategyName.PureMarketMaking]: 22,
+  [StrategyName.Arbitrage]: 5,
+  [StrategyName.Liquidity]: 3,
+};
+
 export const useFileHref = (strategyName: Ref<StrategyName>) => {
   const { values } = useForm(strategyName);
   return computed(() => {
@@ -20,8 +26,8 @@ export const useFileHref = (strategyName: Ref<StrategyName>) => {
           ordersFormatArr.push(
             `order_${index + 1}: [${[
               String(val.value).toLowerCase(),
-              String(val.orderAmount.value),
-              String(val.orderLevelParam.value),
+              String(val.orderAmount.value ?? 0),
+              String(val.orderLevelParam.value ?? 0),
             ]}]`
               .replace(/,/g, '-')
               .replace(/(\[)|(\])/g, '='),
@@ -34,8 +40,17 @@ export const useFileHref = (strategyName: Ref<StrategyName>) => {
         [fieldName]: fieldValue,
       };
     }, {});
+
     let iterator = 0;
-    return `data:text/plain,${JSON.stringify(valuesObj, null, 1)
+    return `data:text/plain,${JSON.stringify(
+      {
+        template_version: templateVersionMap[strategyName.value],
+        strategy: strategyName.value.split('-').join('_'),
+        ...valuesObj,
+      },
+      null,
+      1,
+    )
       .replace(/[{},"]/g, '')
       .replace(/-/g, ', ')
       .replace(/(\[)|(\])/g, '')
