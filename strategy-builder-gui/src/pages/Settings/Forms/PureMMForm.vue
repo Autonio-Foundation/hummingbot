@@ -23,7 +23,7 @@
       Advanced
     </q-btn>
   </div>
-  <div v-if="formType === FormType.Basic" class="q-gutter-md">
+  <div v-show="formType === FormType.Basic" class="q-gutter-md">
     <FieldSelect v-bind="exchange" :on-select-update="handleSelectUpdate" />
     <FieldInputSelect v-bind="market" :filter="filterMarketsSelect" />
     <FieldInput v-bind="bidSpread" />
@@ -32,7 +32,7 @@
     <FieldInput v-bind="orderAmount" input-class="col-4" />
     <FieldToggle v-bind="pingPong" />
   </div>
-  <div v-if="formType === FormType.Advanced" class="q-gutter-md">
+  <div v-show="formType === FormType.Advanced" class="q-gutter-md">
     <FieldInput v-bind="orderLevels" />
     <FieldInput v-bind="orderLevelAmount" />
     <FieldInput v-bind="orderLevelSpread" />
