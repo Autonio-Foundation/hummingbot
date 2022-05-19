@@ -11,6 +11,18 @@ const templateVersionMap = {
   [StrategyName.Liquidity]: 3,
 };
 
+export const strategyNameInFileMap = {
+  [StrategyName.PureMarketMaking]: 'pure_market_making',
+  [StrategyName.Liquidity]: 'liquidity_mining',
+  [StrategyName.Arbitrage]: 'arbitrage',
+};
+
+export const strategyNameFromFileMap = {
+  [strategyNameInFileMap[StrategyName.PureMarketMaking]]: StrategyName.PureMarketMaking,
+  [strategyNameInFileMap[StrategyName.Liquidity]]: StrategyName.Liquidity,
+  [strategyNameInFileMap[StrategyName.Arbitrage]]: StrategyName.Arbitrage,
+};
+
 export const useFileHref = (strategyName: Ref<StrategyName>) => {
   const { values } = useForm(strategyName);
   return computed(() => {
@@ -45,7 +57,7 @@ export const useFileHref = (strategyName: Ref<StrategyName>) => {
     return `data:text/plain,${JSON.stringify(
       {
         template_version: templateVersionMap[strategyName.value],
-        strategy: strategyName.value.split('-').join('_'),
+        strategy: strategyNameInFileMap[strategyName.value],
         ...valuesObj,
       },
       null,

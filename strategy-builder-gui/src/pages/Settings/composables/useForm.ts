@@ -11,7 +11,7 @@ export { BtnToggleType } from '../stores/form.types';
 
 const fixValue = (value: number | string | boolean | Order[]) => {
   if (typeof value === 'number') {
-    return Number(value.toFixed(2));
+    return String(value.toFixed(2));
   }
 
   return value;

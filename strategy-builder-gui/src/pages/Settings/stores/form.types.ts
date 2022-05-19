@@ -9,8 +9,8 @@ export enum FieldType {
 }
 
 export enum BtnToggleType {
-  Sell = 'Sell',
-  Buy = 'Buy',
+  Sell = 'sell',
+  Buy = 'buy',
 }
 
 export interface Select {
