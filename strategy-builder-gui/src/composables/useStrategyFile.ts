@@ -2,7 +2,7 @@ import { useForm } from 'src/pages/Settings/composables/useForm';
 import { $fileMap } from 'src/pages/Settings/stores/form';
 import { BtnToggleType, Order } from 'src/pages/Settings/stores/form.types';
 import { StrategyName } from 'src/stores/strategies';
-import { computed, getCurrentInstance, Ref } from 'vue';
+import { computed, Ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const templateVersionMap = {
@@ -25,7 +25,6 @@ export const strategyNameFromFileMap = {
 
 export const useStrategyFile = () => {
   const router = useRouter();
-  const instance = getCurrentInstance();
 
   const getHref = (strategyName: Ref<StrategyName>) => {
     const { values } = useForm(strategyName);
@@ -82,7 +81,6 @@ export const useStrategyFile = () => {
 
   const handleFileUpload = (event: Event) => {
     const fileReader = new FileReader();
-
     const files = (event.target as HTMLInputElement).files as FileList;
 
     fileReader.addEventListener('load', () => {
