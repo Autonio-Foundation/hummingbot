@@ -2,7 +2,8 @@ import { useForm } from 'src/pages/Settings/composables/useForm';
 import { $fileMap } from 'src/pages/Settings/stores/form';
 import { BtnToggleType, Order } from 'src/pages/Settings/stores/form.types';
 import { StrategyName } from 'src/stores/strategies';
-import { computed, Ref } from 'vue';
+import { computed, getCurrentInstance, Ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 const templateVersionMap = {
   [StrategyName.PureMarketMaking]: 22,
@@ -23,6 +24,9 @@ export const strategyNameFromFileMap = {
 };
 
 export const useStrategyFile = () => {
+  const router = useRouter();
+  const instance = getCurrentInstance();
+
   const getHref = (strategyName: Ref<StrategyName>) => {
     const { values } = useForm(strategyName);
     return computed(() => {
@@ -78,6 +82,7 @@ export const useStrategyFile = () => {
 
   const handleFileUpload = (event: Event) => {
     const fileReader = new FileReader();
+
     const files = (event.target as HTMLInputElement).files as FileList;
 
     fileReader.addEventListener('load', () => {
@@ -151,6 +156,10 @@ export const useStrategyFile = () => {
         });
 
         localStorage.setItem(strategyName, JSON.stringify(obj));
+
+        router.push({ path: `/settings/${strategyName}`, force: true }).then(() => {
+          window.location.reload();
+        });
       } catch (e) {
         // eslint-disable-next-line no-console
         console.log('Wrong file format: ', e); // TODO: ADD POPUP WITH ERROR
