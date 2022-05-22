@@ -81,75 +81,80 @@ export const useStrategyFile = () => {
     const files = (event.target as HTMLInputElement).files as FileList;
 
     fileReader.addEventListener('load', () => {
-      const data = Buffer.from(fileReader.result as string, 'base64').toString('binary');
-      const repData = data.slice(data.indexOf('template_version:'));
-      const dataArr = repData.split('\n');
-      const obj: { [key: string]: string | boolean | object } = {};
+      try {
+        const data = Buffer.from(fileReader.result as string, 'base64').toString('binary');
+        const repData = data.slice(data.indexOf('template_version:'));
+        const dataArr = repData.split('\n');
+        const obj: { [key: string]: string | boolean | object } = {};
 
-      dataArr.forEach((val) => {
-        if (val) {
-          const valArr = val.split(':');
-          obj[valArr[0].replace(/ /g, '')] = valArr[1].replace(/ /g, '');
-        }
-      });
-
-      const stringOrders: string[] = [];
-
-      Object.keys(obj).forEach((key) => {
-        if (key.includes('order_') && (obj[key] as string).includes('[')) {
-          stringOrders.push(obj[key] as string);
-          delete obj[key];
-        }
-      });
-
-      const orders = stringOrders.map((value) => {
-        const orderArr = value.replace(/(\[)|(\])/g, '').split(',');
-        const orderValue = orderArr[0] as BtnToggleType;
-        const orderAmount = Number(orderArr[1]);
-        const orderLevelParam = Number(orderArr[2]);
-
-        const order = {
-          value: orderValue,
-          hint: 'Order hint',
-          orderAmount: {
-            value: orderAmount,
-
-            properties: {
-              placeholder: '0',
-              rightText: '',
-            },
-          },
-          orderLevelParam: {
-            value: orderLevelParam,
-
-            properties: {
-              placeholder: '0',
-              rightText: '',
-            },
-          },
-        };
-        return order;
-      });
-
-      obj.orders = orders;
-
-      const strategyName = strategyNameFromFileMap[obj.strategy as string];
-      delete obj.strategy;
-      delete obj.template_version;
-      const fileMap = $fileMap[strategyName];
-
-      Object.keys(fileMap).forEach((fileKey) => {
-        Object.keys(obj).forEach((objKey) => {
-          if (fileMap[fileKey] === objKey && objKey !== 'orders') {
-            obj[fileKey] =
-              obj[objKey] === 'true' ? true : obj[objKey] === 'false' ? false : obj[objKey];
-
-            delete obj[objKey];
+        dataArr.forEach((val) => {
+          if (val) {
+            const valArr = val.split(':');
+            obj[valArr[0].replace(/ /g, '')] = valArr[1].replace(/ /g, '');
           }
         });
-      });
 
-      localStorage.setItem(strategyName, JSON.stringify(obj));
+        const stringOrders: string[] = [];
+
+        Object.keys(obj).forEach((key) => {
+          if (key.includes('order_') && (obj[key] as string).includes('[')) {
+            stringOrders.push(obj[key] as string);
+            delete obj[key];
+          }
+        });
+
+        const orders = stringOrders.map((value) => {
+          const orderArr = value.replace(/(\[)|(\])/g, '').split(',');
+          const orderValue = orderArr[0] as BtnToggleType;
+          const orderAmount = Number(orderArr[1]);
+          const orderLevelParam = Number(orderArr[2]);
+
+          const order = {
+            value: orderValue,
+            hint: 'Order hint',
+            orderAmount: {
+              value: orderAmount,
+
+              properties: {
+                placeholder: '0',
+                rightText: '',
+              },
+            },
+            orderLevelParam: {
+              value: orderLevelParam,
+
+              properties: {
+                placeholder: '0',
+                rightText: '',
+              },
+            },
+          };
+          return order;
+        });
+
+        obj.orders = orders;
+
+        const strategyName = strategyNameFromFileMap[obj.strategy as string];
+        delete obj.strategy;
+        delete obj.template_version;
+        const fileMap = $fileMap[strategyName];
+
+        Object.keys(fileMap).forEach((fileKey) => {
+          Object.keys(obj).forEach((objKey) => {
+            if (fileMap[fileKey] === objKey && objKey !== 'orders') {
+              obj[fileKey] =
+                obj[objKey] === 'true' ? true : obj[objKey] === 'false' ? false : obj[objKey];
+
+              delete obj[objKey];
+            }
+          });
+        });
+
+        localStorage.setItem(strategyName, JSON.stringify(obj));
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log('Wrong file format: ', e); // TODO: ADD POPUP WITH ERROR
+      }
     });
     fileReader.readAsDataURL(files[0]);
   };
