@@ -37,9 +37,7 @@ export default defineComponent({
 
   setup() {
     const steps = useSteps();
-
     const strategyName = useStrategyName();
-
     const { values, init } = useForm(strategyName);
 
     init();
