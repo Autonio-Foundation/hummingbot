@@ -34,8 +34,10 @@ export const useForm = (strategyName: Ref<StrategyName>) => {
     if (localStorageData) {
       const parsedLocalStorage = JSON.parse(localStorageData);
 
-      Object.keys(form).forEach((val) => {
-        form[val].value.value = parsedLocalStorage[val];
+      Object.keys(form).forEach((key) => {
+        if (key !== 'fileName') {
+          form[key].value.value = parsedLocalStorage[key];
+        }
       });
     }
   };
