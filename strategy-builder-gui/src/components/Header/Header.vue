@@ -21,7 +21,7 @@
       >
         Upload strategy
       </q-btn>
-      <input v-show="false" ref="file" type="file" @change="handleFileUpload" />
+      <input v-show="false" ref="file" type="file" accept=".yml" @change="handleFileUpload" />
     </div>
   </q-toolbar>
 </template>
