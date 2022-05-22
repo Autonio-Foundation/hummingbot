@@ -16,9 +16,9 @@ import { StrategyName } from 'src/composables/useStrategies';
 import { $strategyNameDisplayMap } from 'src/stores/strategies';
 import { computed, defineComponent } from 'vue';
 
+import { useStrategyFile } from '../../../composables/useStrategyFile';
 import { useStrategyName } from '../../../composables/useStrategyName';
 import Pager from '../components/Pager/Index.vue';
-import { useFileHref } from '../composables/useFileHref';
 import { useForm } from '../composables/useForm';
 import { useSteps } from '../composables/useSteps';
 import ArbitrageForm from './ArbitrageForm.vue';
@@ -44,7 +44,9 @@ export default defineComponent({
 
     init();
 
-    const fileHref = useFileHref(strategyName);
+    const { getHref } = useStrategyFile();
+
+    const fileHref = getHref(strategyName);
     const displaySaveForm = computed(() => steps.current.value === steps.count);
     const fileName = computed(() => values.value.fileName);
 
