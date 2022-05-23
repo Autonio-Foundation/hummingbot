@@ -21,7 +21,7 @@
       >
         Upload strategy
       </q-btn>
-      <input v-show="false" ref="file" type="file" accept=".yml" @change="handleFileUpload" />
+      <input v-show="false" ref="file" type="file" accept=".yml" @change="upload" />
     </div>
   </q-toolbar>
 </template>
@@ -33,9 +33,9 @@ import { defineComponent, ref } from 'vue';
 export default defineComponent({
   setup() {
     const file = ref<HTMLElement | null>(null);
-    const { handleFileUpload } = useStrategyFile();
+    const { upload } = useStrategyFile();
 
-    return { handleFileUpload, file };
+    return { upload, file };
   },
 });
 </script>
