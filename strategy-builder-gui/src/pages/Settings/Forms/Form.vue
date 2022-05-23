@@ -15,6 +15,7 @@
 import { StrategyName } from 'src/composables/useStrategies';
 import { $strategyNameDisplayMap } from 'src/stores/strategies';
 import { computed, defineComponent } from 'vue';
+import { useRouter } from 'vue-router';
 
 import { useStrategyFile } from '../../../composables/useStrategyFile';
 import { useStrategyName } from '../../../composables/useStrategyName';
@@ -39,8 +40,17 @@ export default defineComponent({
     const steps = useSteps();
     const strategyName = useStrategyName();
     const { values, init } = useForm(strategyName);
+    const router = useRouter();
 
     init();
+
+    router.afterEach((to) => {
+      const pathStrategyName = to.path.split('/')[2] as StrategyName;
+
+      if (pathStrategyName === strategyName.value) {
+        init();
+      }
+    });
 
     const { getHref } = useStrategyFile();
 
