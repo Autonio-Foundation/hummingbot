@@ -79,7 +79,7 @@ export const useStrategyFile = () => {
     });
   };
 
-  const handleFileUpload = (event: Event) => {
+  const upload = (event: Event) => {
     const fileReader = new FileReader();
     const files = (event.target as HTMLInputElement).files as FileList;
 
@@ -166,5 +166,5 @@ export const useStrategyFile = () => {
     fileReader.readAsDataURL(files[0]);
   };
 
-  return { getHref, handleFileUpload };
+  return { getHref, upload };
 };
