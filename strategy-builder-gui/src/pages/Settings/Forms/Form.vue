@@ -49,6 +49,7 @@ export default defineComponent({
 
       if (pathStrategyName === strategyName.value) {
         init();
+        steps.current.value = 2;
       }
     });
 
