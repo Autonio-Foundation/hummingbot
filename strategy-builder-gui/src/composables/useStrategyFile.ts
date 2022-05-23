@@ -1,3 +1,4 @@
+import { Notify } from 'quasar';
 import { useForm } from 'src/pages/Settings/composables/useForm';
 import { $fileMap } from 'src/pages/Settings/stores/form';
 import { BtnToggleType, Order } from 'src/pages/Settings/stores/form.types';
@@ -156,9 +157,11 @@ export const useStrategyFile = () => {
         localStorage.setItem(strategyName, JSON.stringify(obj));
 
         router.push({ name: 'settings', params: { strategyName }, force: true });
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.log('Wrong file format: ', e); // TODO: ADD POPUP WITH ERROR
+      } catch {
+        Notify.create({
+          type: 'negative',
+          message: 'Something wrong with file format',
+        });
       }
     });
     fileReader.readAsDataURL(files[0]);
