@@ -155,9 +155,7 @@ export const useStrategyFile = () => {
 
         localStorage.setItem(strategyName, JSON.stringify(obj));
 
-        router.push({ path: `/settings/${strategyName}`, force: true }).then(() => {
-          window.location.reload();
-        });
+        router.push({ path: `/settings/${strategyName}`, force: true });
       } catch (e) {
         // eslint-disable-next-line no-console
         console.log('Wrong file format: ', e); // TODO: ADD POPUP WITH ERROR
