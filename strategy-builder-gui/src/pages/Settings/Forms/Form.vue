@@ -45,7 +45,7 @@ export default defineComponent({
     init();
 
     router.afterEach((to) => {
-      const pathStrategyName = to.path.split('/')[2] as StrategyName;
+      const pathStrategyName = to.params.strategyName as StrategyName;
 
       if (pathStrategyName === strategyName.value) {
         init();
