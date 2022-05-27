@@ -72,13 +72,15 @@ export const useForm = (strategyName: Ref<StrategyName>) => {
   };
 
   const getMarkets = async (value: string) => {
+    const proxy = process.env.CCXT_PROXY || '';
     const context = new (
       ccxt as unknown as {
-        [key: string]: new (args: unknown[]) => {
+        [key: string]: new (args: { proxy: string }) => {
           loadMarkets: () => Promise<ccxt.Dictionary<ccxt.Market>>;
         };
       }
-    )[value]([null]);
+    )[value]({ proxy });
+    
     const marketsDictionary = await context.loadMarkets();
     const markets: string[] = [];
 
