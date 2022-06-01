@@ -62,7 +62,7 @@ export const $liquidityForm: $Form = {
       title: 'Order amount',
       hint: '',
       placeholder: '0.00',
-      rightText: '',
+      rightText: ref(''),
     },
   },
 
@@ -73,7 +73,7 @@ export const $liquidityForm: $Form = {
       title: 'Spread',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
 
@@ -92,7 +92,7 @@ export const $liquidityForm: $Form = {
       title: 'Target base',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   orderRefreshTime: {
@@ -102,7 +102,7 @@ export const $liquidityForm: $Form = {
       title: 'Order refresh time',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   orderRefreshTolerance: {
@@ -112,7 +112,7 @@ export const $liquidityForm: $Form = {
       title: 'Order refresh tolerance',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   inventoryRangeMultiplier: {
@@ -122,7 +122,7 @@ export const $liquidityForm: $Form = {
       title: 'Inventory range multiplier',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   volatilityInterval: {
@@ -132,7 +132,7 @@ export const $liquidityForm: $Form = {
       title: 'Volatility interval',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   avgVolatilityPeriod: {
@@ -142,7 +142,7 @@ export const $liquidityForm: $Form = {
       title: 'Avg volatility period',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
 
@@ -153,7 +153,7 @@ export const $liquidityForm: $Form = {
       title: 'Volatility to spread multiplier',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   maxSpread: {
@@ -163,7 +163,7 @@ export const $liquidityForm: $Form = {
       title: 'Max spread',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   maxOrderAge: {
@@ -173,7 +173,7 @@ export const $liquidityForm: $Form = {
       title: 'Max order age',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
 
@@ -184,7 +184,7 @@ export const $liquidityForm: $Form = {
       title: '',
       hint: '',
       placeholder: 'Title',
-      rightText: '.yml',
+      rightText: ref('.yml'),
     },
   },
 };

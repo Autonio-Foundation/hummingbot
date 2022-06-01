@@ -4,7 +4,7 @@ import { $markets, ExchangeName } from 'src/stores/exchanges';
 import { computed, Ref } from 'vue';
 
 import { $form } from '../stores/form';
-import { FormValue, Order, Select } from '../stores/form.types';
+import { FormValue, Input, Order, Select } from '../stores/form.types';
 import { defaultOrder } from '../stores/pureMMForm';
 
 export { BtnToggleType } from '../stores/form.types';
@@ -35,7 +35,13 @@ export const useForm = (strategyName: Ref<StrategyName>) => {
       const parsedLocalStorage = JSON.parse(localStorageData);
 
       Object.keys(form).forEach((key) => {
-        if (key !== 'fileName') {
+        if (key === 'orderAmount' && strategyName.value === StrategyName.PureMarketMaking) {
+          const tradingPair = form.market.value.value as string;
+
+          (form[key] as Input).properties.rightText.value = tradingPair
+            ? tradingPair.split('/')[0]
+            : '';
+        } else if (key !== 'fileName') {
           form[key].value.value = parsedLocalStorage[key];
         }
       });
@@ -49,6 +55,11 @@ export const useForm = (strategyName: Ref<StrategyName>) => {
 
   const updateMarkets = (exchangeName: ExchangeName, markets: string[]) => {
     $markets.value[exchangeName] = markets;
+  };
+
+  const updateInputRightText = (fieldName: string, market: string) => {
+    const tokenName = market.split('/')[0];
+    (form[fieldName] as Input).properties.rightText.value = tokenName;
   };
 
   const filterMarkets = (
@@ -80,7 +91,7 @@ export const useForm = (strategyName: Ref<StrategyName>) => {
         };
       }
     )[value]({ proxy });
-    
+
     const marketsDictionary = await context.loadMarkets();
     const markets: string[] = [];
 
@@ -125,6 +136,7 @@ export const useForm = (strategyName: Ref<StrategyName>) => {
     defaultOrder,
     updateOptions,
     updateMarkets,
+    updateInputRightText,
     filterMarkets,
     filterTokens,
     getMarkets,

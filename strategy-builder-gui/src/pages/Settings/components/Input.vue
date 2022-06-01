@@ -9,7 +9,9 @@
     @update:model-value="(value) => $emit('update:modelValue', value)"
   >
     <template #append>
-      <div class="text-white text-h6 full-height flex items-center q-pr-md">{{ rightText }}</div>
+      <div class="text-white text-h6 full-height flex items-center q-pr-md">
+        {{ rightText.value }}
+      </div>
     </template>
   </q-input>
 </template>

@@ -12,7 +12,7 @@ export const defaultOrder = {
 
     properties: {
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   orderLevelParam: {
@@ -20,7 +20,7 @@ export const defaultOrder = {
 
     properties: {
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
 };
@@ -72,7 +72,7 @@ export const $pureMMForm: $Form = {
       title: 'Bid spread',
       hint: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   askSpread: {
@@ -82,7 +82,7 @@ export const $pureMMForm: $Form = {
       title: 'Ask spread',
       hint: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   orderRefreshTime: {
@@ -92,7 +92,7 @@ export const $pureMMForm: $Form = {
       title: 'Order refresh time',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   exchange: {
@@ -122,7 +122,7 @@ export const $pureMMForm: $Form = {
       title: 'Order amount',
       hint: '',
       placeholder: '0.00',
-      rightText: 'BTC',
+      rightText: ref('3'),
     },
   },
   pingPong: {
@@ -140,7 +140,7 @@ export const $pureMMForm: $Form = {
       title: 'Order levels',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   orderLevelAmount: {
@@ -150,7 +150,7 @@ export const $pureMMForm: $Form = {
       title: 'Order level amount',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   orderLevelSpread: {
@@ -160,7 +160,7 @@ export const $pureMMForm: $Form = {
       title: 'Order level spread',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   inventorySkew: {
@@ -178,7 +178,7 @@ export const $pureMMForm: $Form = {
       title: 'Inventory target base',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   inventoryRangeMultiplier: {
@@ -188,7 +188,7 @@ export const $pureMMForm: $Form = {
       title: 'Inventory range multiplier',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   inventoryPrice: {
@@ -198,7 +198,7 @@ export const $pureMMForm: $Form = {
       title: 'Inventory price',
       hint: '',
       placeholder: 'Input Price',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   filledOrderDelay: {
@@ -208,7 +208,7 @@ export const $pureMMForm: $Form = {
       title: 'Filled order delay',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   hangingOrders: {
@@ -226,7 +226,7 @@ export const $pureMMForm: $Form = {
       title: 'Hanging order cancel percentage',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   minimumSpread: {
@@ -236,7 +236,7 @@ export const $pureMMForm: $Form = {
       title: 'Minimum spread',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   orderRefreshTolerance: {
@@ -246,7 +246,7 @@ export const $pureMMForm: $Form = {
       title: 'Order refresh tollerance',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   priceCelling: {
@@ -256,7 +256,7 @@ export const $pureMMForm: $Form = {
       title: 'Price ceiling',
       hint: '',
       placeholder: 'Price ceiling',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   priceFloor: {
@@ -266,7 +266,7 @@ export const $pureMMForm: $Form = {
       title: 'Price floor',
       hint: '',
       placeholder: 'Price floor',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   orderOptimization: {
@@ -284,7 +284,7 @@ export const $pureMMForm: $Form = {
       title: 'Ask order optimization depth',
       hint: '',
       placeholder: 'Ask order',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   bidOrderOptimizationDepth: {
@@ -294,7 +294,7 @@ export const $pureMMForm: $Form = {
       title: 'Bid order optimization depth',
       hint: '',
       placeholder: 'Bid order',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   addTransactionCosts: {
@@ -360,7 +360,7 @@ export const $pureMMForm: $Form = {
       title: 'Price source custom API',
       hint: '',
       placeholder: 'Pricing API url',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   customApiUpdateInterval: {
@@ -370,7 +370,7 @@ export const $pureMMForm: $Form = {
       title: 'Custom API update interval',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   orders: {
@@ -383,7 +383,7 @@ export const $pureMMForm: $Form = {
       title: '',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   fileName: {
@@ -393,7 +393,7 @@ export const $pureMMForm: $Form = {
       title: '',
       hint: '',
       placeholder: 'Title',
-      rightText: '.yml',
+      rightText: ref('.yml'),
     },
   },
 };
