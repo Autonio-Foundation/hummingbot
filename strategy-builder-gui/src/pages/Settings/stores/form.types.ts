@@ -27,7 +27,7 @@ export interface Input {
   value: Ref<string> | Ref<number>;
   properties: {
     placeholder?: string;
-    rightText?: string;
+    rightText: Ref<string>;
     title: string;
     hint: string;
   };

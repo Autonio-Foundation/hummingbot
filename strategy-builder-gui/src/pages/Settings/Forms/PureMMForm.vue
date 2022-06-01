@@ -25,7 +25,11 @@
   </div>
   <div v-show="formType === FormType.Basic" class="q-gutter-md">
     <FieldSelect v-bind="exchange" :on-select-update="handleSelectUpdate" />
-    <FieldInputSelect v-bind="market" :filter="filterMarketsSelect" />
+    <FieldInputSelect
+      v-bind="market"
+      :filter="filterMarketsSelect"
+      :on-select-update="handleOrderAmountSelect"
+    />
     <FieldInput v-bind="bidSpread" />
     <FieldInput v-bind="askSpread" />
     <FieldInput v-bind="orderRefreshTime" />
@@ -90,8 +94,14 @@ export default defineComponent({
   setup() {
     const strategyName = ref(StrategyName.PureMarketMaking);
     const exchanges = useExchangesByStrategyName(strategyName);
-    const { fields, updateOptions, updateMarkets, filterMarkets, getMarkets } =
-      useForm(strategyName);
+    const {
+      fields,
+      updateOptions,
+      updateMarkets,
+      filterMarkets,
+      getMarkets,
+      updateInputRightText,
+    } = useForm(strategyName);
     const formType = ref(FormType.Basic);
 
     updateOptions('exchange', exchanges.value);
@@ -104,12 +114,17 @@ export default defineComponent({
     const filterMarketsSelect = (val: string, update: (callback: () => void) => void) =>
       filterMarkets((fields.exchange as Select).value.value as ExchangeName, 'market', val, update);
 
+    const handleOrderAmountSelect = (value: string) => {
+      updateInputRightText('orderAmount', value);
+    };
+
     return {
       ...fields,
       formType,
       FormType,
       BtnToggleType,
       strategyName,
+      handleOrderAmountSelect,
       handleSelectUpdate,
       filterMarketsSelect,
     };

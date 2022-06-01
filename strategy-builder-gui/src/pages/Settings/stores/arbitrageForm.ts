@@ -65,7 +65,7 @@ export const $arbitrageForm: $Form = {
       title: 'Min profitability',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   useOracleConversionRate: {
@@ -83,7 +83,7 @@ export const $arbitrageForm: $Form = {
       title: 'Secondary to primary base conversion rate',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   secondaryToPrimaryQuoteConversionRate: {
@@ -93,7 +93,7 @@ export const $arbitrageForm: $Form = {
       title: 'Secondary to primary quote conversion rate',
       hint: '',
       placeholder: '0',
-      rightText: '',
+      rightText: ref(''),
     },
   },
   fileName: {
@@ -103,7 +103,7 @@ export const $arbitrageForm: $Form = {
       title: '',
       hint: '',
       placeholder: 'Title',
-      rightText: '.yml',
+      rightText: ref('.yml'),
     },
   },
 };
