@@ -16,7 +16,7 @@
 <script lang="ts">
 import { useExchangesByStrategyName } from 'src/composables/useExchangesByStrategyName';
 import { StrategyName } from 'src/composables/useStrategies';
-import { $exchangeNameMap, ExchangeName } from 'src/stores/exchanges';
+import { ExchangeName } from 'src/stores/exchanges';
 import { defineComponent, ref } from 'vue';
 
 import FieldInput from '../components/FieldInput.vue';
@@ -36,13 +36,24 @@ export default defineComponent({
     const { fields, updateOptions, updateMarkets, filterMarkets, getMarkets } =
       useForm(strategyName);
 
+    const primaryExchangeName = fields.primaryMarket.value.value as ExchangeName;
+    const secondaryExchangeName = fields.secondaryMarket.value.value as ExchangeName;
+
     updateOptions('primaryMarket', exchanges.value);
     updateOptions('secondaryMarket', exchanges.value);
 
     const handleSelectUpdate = async (val: ExchangeName) => {
-      const markets = await getMarkets($exchangeNameMap[val]);
+      const markets = await getMarkets(val);
       updateMarkets(val, markets);
     };
+
+    if (primaryExchangeName) {
+      handleSelectUpdate(primaryExchangeName);
+    }
+
+    if (secondaryExchangeName) {
+      handleSelectUpdate(secondaryExchangeName);
+    }
 
     const filterPrimaryMarketTradingPair = (val: string, update: (callback: () => void) => void) =>
       filterMarkets(

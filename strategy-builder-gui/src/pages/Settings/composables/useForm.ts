@@ -1,6 +1,6 @@
 import ccxt from 'ccxt';
 import { StrategyName } from 'src/composables/useStrategies';
-import { $markets, ExchangeName } from 'src/stores/exchanges';
+import { $exchangeNameMap, $markets, ExchangeName } from 'src/stores/exchanges';
 import { computed, Ref } from 'vue';
 
 import { $form } from '../stores/form';
@@ -82,7 +82,8 @@ export const useForm = (strategyName: Ref<StrategyName>) => {
     });
   };
 
-  const getMarkets = async (value: string) => {
+  const getMarkets = async (exchangeName: ExchangeName) => {
+    const value = $exchangeNameMap[exchangeName];
     const proxy = process.env.CCXT_PROXY || '';
     const context = new (
       ccxt as unknown as {
