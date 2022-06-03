@@ -57,9 +57,8 @@ export const useForm = (strategyName: Ref<StrategyName>) => {
     $markets.value[exchangeName] = markets;
   };
 
-  const updateInputRightText = (fieldName: string, market: string) => {
-    const tokenName = market.split('/')[0];
-    (form[fieldName] as Input).properties.rightText.value = tokenName;
+  const updateInputRightText = (fieldName: string, text: string) => {
+    (form[fieldName] as Input).properties.rightText.value = text;
   };
 
   const filterMarkets = (

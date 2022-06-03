@@ -120,7 +120,8 @@ export default defineComponent({
       filterMarkets((fields.exchange as Select).value.value as ExchangeName, 'market', val, update);
 
     const handleOrderAmountSelect = (value: string) => {
-      updateInputRightText('orderAmount', value);
+      const tokenName = value.split('/')[0];
+      updateInputRightText('orderAmount', tokenName);
     };
 
     return {
